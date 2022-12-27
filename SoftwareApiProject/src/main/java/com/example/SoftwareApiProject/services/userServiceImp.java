@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 @Service
 public class userServiceImp implements userService {
@@ -16,7 +15,7 @@ public class userServiceImp implements userService {
     @Override
     public String addUser(User incomingUser) {
         for (User users : usersArray){
-            if (users.username.equals(incomingUser.username)) {
+            if (users.getUsername().equals(incomingUser.getUsername())) {
                 return "user already added";
             }
         }
@@ -27,7 +26,8 @@ public class userServiceImp implements userService {
     @Override
     public User getUser(String name) {
         for (User users : usersArray){
-            if (users.username.equals(name)) {
+            if (users.getUsername().equals(name)) {
+                System.out.println(users.getWallet().getAmount() + " " + users.getCreditCard().getAmount());
                 return users;
             }
         }

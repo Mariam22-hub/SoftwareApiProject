@@ -1,26 +1,23 @@
-//package com.example.SoftwareApiProject.entity;
-//
-//
-//import static com.example.SoftwareApiProject.entity.User.transactions;
-//
-//public class Wallet extends IWallet {
-//
-//    public double amount;
+package com.example.SoftwareApiProject.Models;
+
+public class Wallet{
+
 //    IUser user;
-//
-//    public Wallet(IUser user, double amount){
-//        this.user = user;
-//        this.amount = amount;
-//    }
-//
-//    public void setAmount(double am){
-//        amount = am;
-//    }
-//
-////	public double getAmount(){
-////		return amount;
-////	}
-//
+
+    public double amount;
+    public Wallet(double amount) {
+        this.amount = amount;
+    }
+    public Wallet(){
+    }
+    public void setAmount(double am){
+        amount = am;
+    }
+
+	public double getAmount(){
+		return amount;
+	}
+
 //    public void decriment(double am){
 //        amount -= am;
 //        transactions.add(am);
@@ -30,11 +27,7 @@
 //        amount += am;
 //        this.setAmount(amount);
 //    }
-//
-//
-//    public double getAmount() {
-//        // TODO Auto-generated method stub
-//        return amount;
-//    }
-//
-//}
+
+
+
+}
