@@ -4,9 +4,7 @@ import com.example.SoftwareApiProject.Models.User;
 import com.example.SoftwareApiProject.services.userService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class userController {
@@ -16,5 +14,10 @@ public class userController {
     @PostMapping("/users")
     public String addUser(@Valid @RequestBody User user){
         return service.addUser(user);
+    }
+
+    @GetMapping("/users/{username}")
+    public User getUser(@PathVariable ("username") String name){
+        return service.getUser(name);
     }
 }

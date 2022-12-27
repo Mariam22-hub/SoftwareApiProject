@@ -23,4 +23,14 @@ public class userServiceImp implements userService {
         usersArray.add(incomingUser);
         return "user added successfully";
     }
+
+    @Override
+    public User getUser(String name) {
+        for (User users : usersArray){
+            if (users.username.equals(name)) {
+                return users;
+            }
+        }
+        return null;
+    }
 }
