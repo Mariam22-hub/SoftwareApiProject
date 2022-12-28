@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class userServiceImp implements userService {
     @Autowired
     userRepository userRepo;
+    @Autowired
+    servicesImp servicesimp;
 
     @Override
     public String addUser(User incomingUser) {
@@ -21,5 +23,11 @@ public class userServiceImp implements userService {
     @Override
     public User getUser(String name) {
         return userRepo.getUser(name);
+    }
+
+    @Override
+    public String subscribe(String username) {
+        servicesimp.subscribeUser();
+        return userRepo.subscribe(username);
     }
 }

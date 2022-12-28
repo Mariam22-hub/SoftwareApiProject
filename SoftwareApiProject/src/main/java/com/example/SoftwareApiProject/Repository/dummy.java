@@ -11,12 +11,10 @@ public class dummy {
     servicesProvidersRepository repo;
 
     public dummy() {
-    }
-
-    public void insert(){
         serviceProviders.add((Service) repo.internetEtisalat);
         serviceProviders.add((Service) repo.internetOrange);
         serviceProviders.add((Service) repo.internetVodafone);
         serviceProviders.add((Service) repo.internetWE);
     }
+
 }

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class servicesProvidersRepository {
     public static ArrayList<Service> serviceProviders = new ArrayList<Service>();
 
+    public dummy d;
     InternetEtisalat internetEtisalat;
     InternetOrange internetOrange;
     InternetVodafone internetVodafone;
