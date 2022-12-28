@@ -2,7 +2,7 @@ package com.example.SoftwareApiProject.Models;
 
 import java.util.ArrayList;
 
-public interface Service {
+public interface Services {
 
     public String description();
     public String getName();

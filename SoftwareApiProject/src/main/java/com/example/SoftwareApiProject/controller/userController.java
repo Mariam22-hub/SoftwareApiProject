@@ -23,8 +23,8 @@ public class userController {
         return service.getUser(name);
     }
 
-    @GetMapping("/users/{username}")
-    public ResponseEntity<String> subscribe(@PathVariable("username") String username, @RequestParam(value = "serviceName") String serviceName){
+    @GetMapping("/users/subscribe")
+    public ResponseEntity<String> subscribe(@RequestParam(value = "username") String username, @RequestParam(value = "serviceName") String serviceName){
         return ResponseEntity.ok(service.subscribe(username, serviceName));
     }
 }

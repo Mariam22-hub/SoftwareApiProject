@@ -1,6 +1,6 @@
 package com.example.SoftwareApiProject.Repository;
 
-import com.example.SoftwareApiProject.Models.Service;
+import com.example.SoftwareApiProject.Models.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.example.SoftwareApiProject.Repository.servicesProvidersRepository.serviceProviders;
@@ -11,10 +11,10 @@ public class dummy {
     servicesProvidersRepository repo;
 
     public dummy() {
-        serviceProviders.add((Service) repo.internetEtisalat);
-        serviceProviders.add((Service) repo.internetOrange);
-        serviceProviders.add((Service) repo.internetVodafone);
-        serviceProviders.add((Service) repo.internetWE);
+        serviceProviders.add((Services) repo.internetEtisalat);
+        serviceProviders.add((Services) repo.internetOrange);
+        serviceProviders.add((Services) repo.internetVodafone);
+        serviceProviders.add((Services) repo.internetWE);
     }
 
 }

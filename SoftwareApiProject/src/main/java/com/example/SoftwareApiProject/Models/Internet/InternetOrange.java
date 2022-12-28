@@ -1,12 +1,11 @@
 package com.example.SoftwareApiProject.Models.Internet;//package com.example.SoftwareAPIProject.entity.Internet;
 
-import com.example.SoftwareApiProject.Models.Service;
+import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 
-import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 
-public class InternetOrange implements Service {
+public class InternetOrange implements Services {
 
     public static ArrayList<User> usersSubscribed = new ArrayList<User>();
 
