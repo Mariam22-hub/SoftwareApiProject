@@ -1,5 +1,8 @@
 package com.example.SoftwareApiProject.services;
 
+import com.example.SoftwareApiProject.Models.User;
+
 public interface serviceProviders {
-    public void subscribeUser();
+
+    void subscribeUser(String serviceName, User user);
 }

@@ -6,14 +6,12 @@ import com.example.SoftwareApiProject.Repository.userRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
 @Service
 public class userServiceImp implements userService {
     @Autowired
     userRepository userRepo;
     @Autowired
-    servicesImp servicesimp;
+    servicesProvidersImp servicesimp;
 
     @Override
     public String addUser(User incomingUser) {
@@ -26,8 +24,12 @@ public class userServiceImp implements userService {
     }
 
     @Override
-    public String subscribe(String username) {
-        servicesimp.subscribeUser();
-        return userRepo.subscribe(username);
+    public String subscribe(String username, String serviceName) {
+        User user = userRepo.subscribe(username);
+        if (user != null){
+            servicesimp.subscribeUser(serviceName, user);
+            return "user subscribed successfully to ";
+        }
+        return "user not found";
     }
 }

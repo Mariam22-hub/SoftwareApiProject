@@ -1,18 +1,22 @@
 package com.example.SoftwareApiProject.Models.Internet;
 
+import com.example.SoftwareApiProject.Models.Service;
+import com.example.SoftwareApiProject.Models.User;
+
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 
-public class InternetVodafone implements Internet {
+public class InternetVodafone implements Service {
+    public static ArrayList<User> usersSubscribed = new ArrayList<User>();
 
-    public String name = "Internet Etisalat";
-    public double price = 190;
+    public String name;
+    public double price;
 
-    public InternetVodafone(String name, double price) {
-        this.name = name;
-        this.price = price;
+    public InternetVodafone() {
+        price = 100;
+        name = "InternetVodafone";
     }
 
-    public InternetVodafone(){}
 
     public String description() {
 
@@ -20,21 +24,14 @@ public class InternetVodafone implements Internet {
     }
 
     @Override
-    public String value() {
-        return null;
+    public String getName() {
+        return name;
     }
 
     @Override
-    public Class<? extends Annotation> annotationType() {
-        return null;
+    public ArrayList<User> getArray() {
+        return usersSubscribed;
     }
-
-
-//	public void setPayment(Payment p) {
-//		this.p = p;
-//	}
-
-
 
 
 }

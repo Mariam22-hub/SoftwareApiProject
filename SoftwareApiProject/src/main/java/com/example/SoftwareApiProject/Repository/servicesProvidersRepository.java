@@ -15,7 +15,7 @@ import java.util.ArrayList;
 @Builder
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public class servicesProvidersRepository {
     public static ArrayList<Service> serviceProviders = new ArrayList<Service>();
 
@@ -26,5 +26,11 @@ public class servicesProvidersRepository {
     InternetWE internetWE;
 
 
-
+    public servicesProvidersRepository(dummy d, InternetEtisalat internetEtisalat, InternetOrange internetOrange, InternetVodafone internetVodafone, InternetWE internetWE) {
+        this.d = d;
+        this.internetEtisalat = internetEtisalat;
+        this.internetOrange = internetOrange;
+        this.internetVodafone = internetVodafone;
+        this.internetWE = internetWE;
+    }
 }

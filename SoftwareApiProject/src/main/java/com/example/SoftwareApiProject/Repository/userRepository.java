@@ -30,11 +30,10 @@ public class userRepository {
         return null;
     }
 
-    public String subscribe(String username) {
-        for (User users : usersArray) {
-            if (users.getUsername().equals(username)) {
-
-
+    public User subscribe(String username) {
+        for (User user : usersArray) {
+            if (user.getUsername().equals(username)) {
+                return user;
             }
         }
         return null;

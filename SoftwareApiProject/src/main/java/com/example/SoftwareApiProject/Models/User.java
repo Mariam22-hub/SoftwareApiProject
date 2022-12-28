@@ -1,11 +1,6 @@
 package com.example.SoftwareApiProject.Models;
 
 
-import jakarta.persistence.*;
-
-import java.util.ArrayList;
-
-
 public class User{
 
     //    public static ArrayList<Double> transactions = new ArrayList<Double>();
@@ -15,6 +10,7 @@ public class User{
     String email;
     Wallet wallet;
     CreditCard creditCard;
+    String serviceName = "";
 
     public String getUsername() {
         return username;
