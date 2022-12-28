@@ -4,5 +4,5 @@ import com.example.SoftwareApiProject.Models.User;
 
 public interface serviceProviders {
 
-    void subscribeUser(String serviceName, User user);
+    public String subscribeUser(String serviceName, User user);
 }

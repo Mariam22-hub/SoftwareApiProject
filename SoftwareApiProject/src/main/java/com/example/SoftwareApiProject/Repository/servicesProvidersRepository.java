@@ -5,32 +5,23 @@ import com.example.SoftwareApiProject.Models.Internet.InternetOrange;
 import com.example.SoftwareApiProject.Models.Internet.InternetVodafone;
 import com.example.SoftwareApiProject.Models.Internet.InternetWE;
 import com.example.SoftwareApiProject.Models.Services;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Data
-@NoArgsConstructor
+
 @Service
-//@AllArgsConstructor
 public class servicesProvidersRepository {
     public static ArrayList<Services> serviceProviders = new ArrayList<Services>();
 
-    InternetEtisalat internetEtisalat;
-    InternetOrange internetOrange;
-    InternetVodafone internetVodafone;
-    InternetWE internetWE;
-    public dummy d;
 
-
-    public servicesProvidersRepository(dummy d, InternetEtisalat internetEtisalat, InternetOrange internetOrange, InternetVodafone internetVodafone, InternetWE internetWE) {
-        this.internetEtisalat = internetEtisalat;
-        this.internetOrange = internetOrange;
-        this.internetVodafone = internetVodafone;
-        this.internetWE = internetWE;
-
-        this.d = d;
+    public String addServicesProviders(Services s){
+        serviceProviders.add(s);
+        return "service " + s.getName() + " was added";
     }
+
 }

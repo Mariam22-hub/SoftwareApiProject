@@ -12,11 +12,13 @@ public class servicesProvidersImp implements serviceProviders{
     servicesProvidersRepository servicesRepo;
 
     @Override
-    public void subscribeUser(String serviceName, User user) {
-        for (Services services : servicesRepo.serviceProviders){
+    public String subscribeUser(String serviceName, User user) {
+        for (Services services : servicesProvidersRepository.serviceProviders){
             if (serviceName.equals(services.getName())){
                 services.getArray().add(user);
+                return services.getName();
             }
         }
+        return null;
     }
 }

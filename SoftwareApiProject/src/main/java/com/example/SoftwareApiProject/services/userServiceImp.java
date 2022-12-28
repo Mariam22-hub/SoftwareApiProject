@@ -27,8 +27,8 @@ public class userServiceImp implements userService {
     public String subscribe(String username, String serviceName) {
         User user = userRepo.subscribe(username);
         if (user != null){
-            servicesimp.subscribeUser(serviceName, user);
-            return "user subscribed successfully to ";
+            String servicename = servicesimp.subscribeUser(serviceName, user);
+            return "user subscribed successfully to " + servicename;
         }
         return "user not found";
     }
