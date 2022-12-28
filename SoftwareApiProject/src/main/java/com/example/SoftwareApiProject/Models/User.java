@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class User{
 
+    //    public static ArrayList<Double> transactions = new ArrayList<Double>();
     String username;
     String password;
     String refundState;
@@ -62,7 +63,6 @@ public class User{
     public void setCreditCard(CreditCard creditCard) {
         this.creditCard = creditCard;
     }
-//    public static ArrayList<Double> transactions = new ArrayList<Double>();
 
     public User() {
     }
