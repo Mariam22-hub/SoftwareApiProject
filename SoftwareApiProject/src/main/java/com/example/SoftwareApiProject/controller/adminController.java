@@ -13,7 +13,7 @@ public class adminController {
     adminServicesImp adminServices;
 
     @PostMapping("/providers")
-    public String addUser(@Valid @RequestBody Services s){
+    public String addService(@Valid @RequestBody Services s){
         return adminServices.addServiceProviders(s);
     }
 }
