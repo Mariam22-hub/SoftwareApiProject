@@ -1,7 +1,11 @@
-package com.example.SoftwareApiProject.Models;
+package com.example.SoftwareApiProject.Models.Vodafone;
+
+import com.example.SoftwareApiProject.Models.User;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
+@Component
 public class internetVodafone implements Vodafone{
 
     public static String name = "InternetVodafone";

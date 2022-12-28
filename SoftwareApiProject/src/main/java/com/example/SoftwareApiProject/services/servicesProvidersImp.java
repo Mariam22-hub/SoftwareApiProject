@@ -1,7 +1,6 @@
 package com.example.SoftwareApiProject.services;
 
 import com.example.SoftwareApiProject.Models.User;
-import com.example.SoftwareApiProject.Models.internetVodafone;
 import com.example.SoftwareApiProject.Repository.servicesProvidersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,7 @@ public class servicesProvidersImp implements serviceProviders{
 
     //subscribing to vodafone
     @Override
-    public String subscribeUser(String serviceName, User user) {
-        return servicesRepo.subscribeUser(user);
+    public String subscribeUser(String serviceName, User user, String serviceType) {
+        return servicesRepo.subscribeUser(user, serviceName, serviceType);
     }
 }
