@@ -1,7 +1,6 @@
 package com.example.SoftwareApiProject.services;
 
-import com.example.SoftwareApiProject.Models.Services;
+import com.example.SoftwareApiProject.Models.Vodafone;
 
 public interface adminServices {
-    public String addServiceProviders(Services s);
 }
