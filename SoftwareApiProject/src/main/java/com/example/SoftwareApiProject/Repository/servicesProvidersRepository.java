@@ -43,4 +43,13 @@ public class servicesProvidersRepository {
         return false;
     }
 
+    public Services findSer(String serviceName) {
+        for (Services service : serviceProviders) {
+            if (service.getName().equals(serviceName)) {
+                return service;
+            }
+        }
+        return null;
+    }
+
 }

@@ -15,7 +15,7 @@ public abstract class Services {
     public abstract double pay();
 
     public void setPayment(Payment payment2) {
-
+        this.payment=payment2;
     }
 
     public double getPrice() {

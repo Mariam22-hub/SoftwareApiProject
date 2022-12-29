@@ -1,6 +1,7 @@
 
 package com.example.SoftwareApiProject.Models.Mobile;
 
+import com.example.SoftwareApiProject.Models.Payment;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import org.springframework.stereotype.Component;
@@ -8,11 +9,14 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-public class MobileEtisalat implements Services {
+public class MobileEtisalat extends Services {
 
 	String ServiceName = "MobileEtisalat";
 	public double price = 250;
-
+	Payment p;
+	public double pay() {
+		return p.pay(price);
+	}
 	public String getName() {
 		return this.ServiceName;
 	}

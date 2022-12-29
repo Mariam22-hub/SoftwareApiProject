@@ -11,6 +11,6 @@ public interface userService {
 
     String subscribe(String username, String serviceName, String serviceType);
 
-    void PayByWallet(Services s, User user);
+    String PayByWallet(String username, String serviceName);
 }
 

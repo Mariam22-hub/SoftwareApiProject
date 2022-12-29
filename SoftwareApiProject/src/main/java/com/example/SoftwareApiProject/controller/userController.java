@@ -1,9 +1,11 @@
 package com.example.SoftwareApiProject.controller;
 
+import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import com.example.SoftwareApiProject.services.userService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +30,12 @@ public class userController {
     public ResponseEntity<String> subscribe(@RequestParam(value = "username") String username, @RequestParam(value = "serviceName") String serviceName, @RequestParam(value = "serviceType") String serviceType){
         return ResponseEntity.ok(service.subscribe(username, serviceName, serviceType));
     }
+    @GetMapping("/users/pay")
+    public ResponseEntity<String> PayWallet(@RequestParam(value = "username") String username, @RequestParam(value = "serviceName") String serviceName)
+    {
 
+        return ResponseEntity.ok(service.PayByWallet(username,serviceName));
+    }
 //    @PostMapping("/users/service")
 //    public ResponseEntity<String> usersubscribe(@RequestParam(value = "username") String username, Provider provider){
 //        return ResponseEntity.ok(service.subscribe(username, provider))

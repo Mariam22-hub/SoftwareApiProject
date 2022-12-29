@@ -1,6 +1,7 @@
 package com.example.SoftwareApiProject.services;
 
 
+import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import com.example.SoftwareApiProject.Repository.userRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,13 @@ public class userServiceImp implements userService {
                 return "subscription failed, please try again";
         }
         return "user not found";
+    }
+
+
+    public String PayByWallet(String username, String serviceName) {
+        User user = userRepo.getUser(username);
+        Services service = servicesimp.findSer(serviceName);
+        return userRepo.PayWallet(service , user);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.SoftwareApiProject.Models.Internet;
 
+import com.example.SoftwareApiProject.Models.Payment;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import org.springframework.stereotype.Component;
@@ -7,11 +8,15 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 @Component
 
-public class InternetVodafone implements Services {
+public class InternetVodafone extends Services {
     public static ArrayList<User> usersSubscribed = new ArrayList<User>();
 
     public String name;
     public double price;
+    Payment p;
+    public double pay() {
+        return p.pay(price);
+    }
 
     public InternetVodafone() {
         price = 100;
@@ -28,6 +33,8 @@ public class InternetVodafone implements Services {
     public String getName() {
         return name;
     }
+
+
 
     @Override
     public double getPrice() {
