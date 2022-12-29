@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class adminServicesImp implements adminServices{
+    @Override
+    public String addProvider(){
+        return null;
+    }
     @Autowired
     servicesProvidersRepository servicesRepo;
 

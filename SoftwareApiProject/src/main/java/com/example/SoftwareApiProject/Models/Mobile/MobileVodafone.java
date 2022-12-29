@@ -1,6 +1,7 @@
 
 package com.example.SoftwareApiProject.Models.Mobile;
 
+import com.example.SoftwareApiProject.Models.Payment;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 
@@ -12,9 +13,14 @@ public class MobileVodafone implements Services {
 	String ServiceName = "MobileVodafone";
 
 	public double price = 400;
+	public Payment payment;
+
+	@Override
+	public double pay() {
+		return 0;
+	}
 
 	public String getName() {
-		// TODO Auto-generated method stub
 		return ServiceName;
 	}
 
@@ -34,6 +40,11 @@ public class MobileVodafone implements Services {
 	public String description() {
 		// TODO Auto-generated method stub
 		return "welcome to the services of " + this.ServiceName;
+	}
+
+	@Override
+	public void setPayment(Payment payMethod) {
+		this.payment = payMethod;
 	}
 
 

@@ -1,6 +1,7 @@
 
 package com.example.SoftwareApiProject.Models.Mobile;
 
+import com.example.SoftwareApiProject.Models.Payment;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,12 @@ public class MobileEtisalat implements Services {
 
 	String ServiceName = "MobileEtisalat";
 	public double price = 250;
+	public Payment payment;
+
+	@Override
+	public double pay() {
+		return 0;
+	}
 
 	public String getName() {
 		return this.ServiceName;
@@ -33,6 +40,11 @@ public class MobileEtisalat implements Services {
 	public String description() {
 		// TODO Auto-generated method stub
 		return "welcome to the services of " + this.ServiceName;
+	}
+
+	@Override
+	public void setPayment(Payment payMethod) {
+		this.payment = payMethod;
 	}
 
 

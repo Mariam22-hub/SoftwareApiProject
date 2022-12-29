@@ -1,5 +1,6 @@
 package com.example.SoftwareApiProject.Models.Internet;
 
+import com.example.SoftwareApiProject.Models.Payment;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,8 @@ public class InternetVodafone implements Services {
     public String name;
     public double price;
 
+    public Payment payment;
+
     public InternetVodafone() {
         price = 100;
         name = "InternetVodafone";
@@ -22,6 +25,16 @@ public class InternetVodafone implements Services {
     public String description() {
 
         return "welcome to the services of " + this.name;
+    }
+
+    @Override
+    public void setPayment(Payment payMethod) {
+        this.payment = payMethod;
+    }
+
+    @Override
+    public double pay() {
+        return 0;
     }
 
     @Override

@@ -33,14 +33,14 @@ public class userRepository {
         return null;
     }
 
-    public User subscribe(String username) {
-        for (User user : usersArray) {
-            if (user.getUsername().equals(username)) {
-                return user;
-            }
-        }
-        return null;
-    }
+//    public User subscribe(String username) {
+//        for (User user : usersArray) {
+//            if (user.getUsername().equals(username)) {
+//                return user;
+//            }
+//        }
+//        return null;
+//    }
     public void PayWallet(Services service, User user)
     {
         Payment payMethod= (Payment) new PayByWallet(user.getWallet());

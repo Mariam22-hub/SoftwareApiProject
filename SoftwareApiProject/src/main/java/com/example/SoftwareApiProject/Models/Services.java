@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public interface Services {
 
-    public Payment payment = null;
     public abstract double pay();
 
     public String getName();
@@ -15,4 +14,5 @@ public interface Services {
 
     public String description();
 
+    void setPayment(Payment payMethod);
 }
