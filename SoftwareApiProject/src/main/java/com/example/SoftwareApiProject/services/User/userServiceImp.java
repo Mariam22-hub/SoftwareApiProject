@@ -46,4 +46,9 @@ public class userServiceImp implements userService {
         return userRepo.PayWallet(service , user);
     }
 
+    @Override
+    public String signIn(User regesteredUser) {
+        return userRepo.signIn(regesteredUser);
+    }
+
 }

@@ -14,9 +14,11 @@ public class userRepository {
 
     @Autowired
     public static ArrayList<User> usersArray = new ArrayList<User>();
+
     public String addUser(User incomingUser) {
-        for (User users : usersArray){
-            if (users.getUsername().equals(incomingUser.getUsername())) {
+        for (User users : usersArray) {
+            if (users.getUsername().equals(incomingUser.getUsername()) || users.getEmail().equals(incomingUser.getEmail())) {
+                users.setSignedIn(true);
                 return "user already added";
             }
         }
@@ -25,8 +27,8 @@ public class userRepository {
     }
 
     public User getUser(String name) {
-        for (User users : usersArray){
-            if (users.getUsername().equals(name)){
+        for (User users : usersArray) {
+            if (users.getUsername().equals(name)) {
                 return users;
             }
         }
@@ -41,9 +43,9 @@ public class userRepository {
         }
         return null;
     }
-    public String PayWallet(Services service, User user)
-    {
-        Payment payMethod= (Payment) new PayByWallet(user.getWallet());
+
+    public String PayWallet(Services service, User user) {
+        Payment payMethod = (Payment) new PayByWallet(user.getWallet());
         service.setPayment(payMethod);
         service.pay();
         user.wallet.decriment(service.getPrice());
@@ -51,4 +53,13 @@ public class userRepository {
     }
 
 
+    public String signIn(User regesteredUser) {
+        for (User users : usersArray) {
+            if (users.getUsername().equals(regesteredUser.getUsername()) && users.getEmail().equals(regesteredUser.getEmail())) {
+                users.setSignedIn(true);
+                return "you signed in successfully";
+            }
+        }
+        return ("Invalid User Information");
+    }
 }

@@ -12,5 +12,8 @@ public interface userService {
     String subscribe(String username, String serviceName);
 
     String PayByWallet(String username, String serviceName);
+
+    String signIn(User user);
+
 }
 
