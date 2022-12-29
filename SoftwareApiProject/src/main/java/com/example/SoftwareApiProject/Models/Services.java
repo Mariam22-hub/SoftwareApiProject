@@ -4,10 +4,8 @@ import java.util.ArrayList;
 
 public interface Services {
 
-    public static ArrayList<User> usersSubscribed = new ArrayList<User>();
-
-    public String name = null;
-    public double price = 0.0;
+    public Payment payment = null;
+    public abstract double pay();
 
     public String getName();
 
@@ -16,4 +14,5 @@ public interface Services {
     public ArrayList<User> getArray();
 
     public String description();
+
 }

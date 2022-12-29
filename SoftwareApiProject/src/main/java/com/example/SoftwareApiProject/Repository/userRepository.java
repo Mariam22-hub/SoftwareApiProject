@@ -1,5 +1,8 @@
 package com.example.SoftwareApiProject.Repository;
 
+import com.example.SoftwareApiProject.Models.PayByWallet;
+import com.example.SoftwareApiProject.Models.Payment;
+import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,5 +41,13 @@ public class userRepository {
         }
         return null;
     }
+    public void PayWallet(Services service, User user)
+    {
+        Payment payMethod= (Payment) new PayByWallet(user.getWallet());
+        service.setPayment(payMethod);
+        service.pay();
+        user.wallet.decriment(service.getPrice());
+    }
+
 
 }

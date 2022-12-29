@@ -8,7 +8,7 @@ public class User{
     String password;
     String refundState;
     String email;
-    Wallet wallet;
+   public Wallet wallet;
     CreditCard creditCard;
     String serviceType = "";
 
