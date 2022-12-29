@@ -7,7 +7,7 @@ import com.example.SoftwareApiProject.Models.User;
 
 import java.util.ArrayList;
 
-public class MobileOrange extends Services {
+public class MobileOrange implements Services {
 
 	public static ArrayList<User> usersSubscribed = new ArrayList<User>();
 	String ServiceName = "MobileOrange";
@@ -37,7 +37,11 @@ public class MobileOrange extends Services {
 		// TODO Auto-generated method stub
 		return "welcome to the services of " + this.ServiceName + "\n";
 	}
-	
-	
+
+	@Override
+	public void setPayment(Payment payMethod) {
+		p = payMethod;
+	}
+
 
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-public class MobileEtisalat extends Services {
+public class MobileEtisalat implements Services {
 
 	String ServiceName = "MobileEtisalat";
 	public double price = 250;
@@ -37,6 +37,11 @@ public class MobileEtisalat extends Services {
 	public String description() {
 		// TODO Auto-generated method stub
 		return "welcome to the services of " + this.ServiceName;
+	}
+
+	@Override
+	public void setPayment(Payment payMethod) {
+		p = payMethod;
 	}
 
 

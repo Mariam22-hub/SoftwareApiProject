@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 @Component
-public class InternetWE extends Services {
+public class InternetWE implements Services {
 
     public static ArrayList<User> usersSubscribed = new ArrayList<User>();
 
@@ -25,6 +25,11 @@ public class InternetWE extends Services {
     public String description() {
 
         return "welcome to the services of " + this.name;
+    }
+
+    @Override
+    public void setPayment(Payment payMethod) {
+        this.p = payMethod;
     }
 
     @Override

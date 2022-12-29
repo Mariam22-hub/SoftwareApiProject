@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 @Component
 
-public class InternetVodafone extends Services {
+public class InternetVodafone implements Services {
     public static ArrayList<User> usersSubscribed = new ArrayList<User>();
 
     public String name;
     public double price;
     Payment p;
+    @Override
     public double pay() {
         return p.pay(price);
     }
@@ -37,15 +38,9 @@ public class InternetVodafone extends Services {
     }
 
     @Override
-    public double pay() {
-        return 0;
-    }
-
-    @Override
     public String getName() {
         return name;
     }
-
 
 
     @Override

@@ -7,7 +7,7 @@ import com.example.SoftwareApiProject.Models.User;
 
 import java.util.ArrayList;
 
-public class MobileWE extends Services {
+public class MobileWE implements Services {
 
 	public static ArrayList<User> usersSubscribed = new ArrayList<User>();
 
@@ -44,7 +44,11 @@ public class MobileWE extends Services {
 	public String description() {
 		return "welcome to the services of " + this.ServiceName;
 	}
-	
+
+	@Override
+	public void setPayment(Payment payMethod) {
+		p = payMethod;
+	}
 
 
 }
