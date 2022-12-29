@@ -2,6 +2,7 @@ package com.example.SoftwareApiProject.services;
 
 
 import com.example.SoftwareApiProject.Models.Provider;
+import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import com.example.SoftwareApiProject.Repository.userRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,11 @@ public class userServiceImp implements userService {
             return "user subscribed successfully to " + servicename;
         }
         return "user not found";
+    }
+
+    @Override
+    public void PayByWallet(Services service, User user) {
+    userRepo.PayWallet(service , user);
     }
 
 }

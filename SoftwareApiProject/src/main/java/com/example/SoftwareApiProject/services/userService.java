@@ -1,5 +1,6 @@
 package com.example.SoftwareApiProject.services;
 
+import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import jakarta.validation.Valid;
 
@@ -9,5 +10,7 @@ public interface userService {
     User getUser(String name);
 
     String subscribe(String username, String serviceName, String serviceType);
+
+    void PayByWallet(Services s, User user);
 }
 

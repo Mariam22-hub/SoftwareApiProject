@@ -11,6 +11,12 @@ public abstract class Services {
     public String getName() {
         return name;
     }
+    public Payment payment = null;
+    public abstract double pay();
+
+    public void setPayment(Payment payment2) {
+
+    }
 
     public double getPrice() {
         return price;

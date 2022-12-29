@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 @Service
 public class servicesProvidersRepository {
+    Services service;
     public static ArrayList<Provider> serviceProviders = new ArrayList<Provider>();
     @Autowired
     internetVodafone InternetVodafone;
@@ -36,5 +37,7 @@ public class servicesProvidersRepository {
         return null;
 
     }
+
+
 
 }
