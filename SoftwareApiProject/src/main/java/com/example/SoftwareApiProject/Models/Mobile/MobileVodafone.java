@@ -7,22 +7,21 @@ import com.example.SoftwareApiProject.Models.User;
 
 import java.util.ArrayList;
 
-public class MobileVodafone implements Services {
+public class MobileVodafone extends Services {
 
 	public static ArrayList<User> usersSubscribed = new ArrayList<User>();
 	String ServiceName = "MobileVodafone";
 
 	public double price = 400;
-	public Payment payment;
-
-	@Override
+	Payment p;
 	public double pay() {
-		return 0;
+		return p.pay(price);
 	}
-
 	public String getName() {
+		// TODO Auto-generated method stub
 		return ServiceName;
 	}
+
 
 	@Override
 	public double getPrice() {
@@ -40,11 +39,6 @@ public class MobileVodafone implements Services {
 	public String description() {
 		// TODO Auto-generated method stub
 		return "welcome to the services of " + this.ServiceName;
-	}
-
-	@Override
-	public void setPayment(Payment payMethod) {
-		this.payment = payMethod;
 	}
 
 

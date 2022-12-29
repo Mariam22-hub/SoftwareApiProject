@@ -8,14 +8,16 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-public class InternetOrange implements Services {
+public class InternetOrange extends Services {
 
     public static ArrayList<User> usersSubscribed = new ArrayList<User>();
 
     public String name;
     public double price;
-    public Payment payment;
-
+    Payment p;
+    public double pay() {
+        return p.pay(price);
+    }
     public InternetOrange() {
         name = "InternetOrange";
         price = 250;
@@ -28,19 +30,11 @@ public class InternetOrange implements Services {
     }
 
     @Override
-    public void setPayment(Payment payMethod) {
-        this.payment = payMethod;
-    }
-
-    @Override
-    public double pay() {
-        return 0;
-    }
-
-    @Override
     public String getName() {
         return name;
     }
+
+
 
     @Override
     public double getPrice() {

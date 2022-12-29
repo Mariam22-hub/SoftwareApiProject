@@ -1,4 +1,4 @@
-package com.example.SoftwareApiProject.services.User;
+package com.example.SoftwareApiProject.services;
 
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
@@ -9,7 +9,8 @@ public interface userService {
 
     User getUser(String name);
 
-    void PayByWallet(Services s, User user);
-    String subscribe(String username, String serviceName);
+    String subscribe(String username, String serviceName, String serviceType);
+
+    String PayByWallet(String username, String serviceName);
 }
 

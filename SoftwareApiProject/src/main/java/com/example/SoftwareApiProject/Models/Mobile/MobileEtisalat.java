@@ -9,17 +9,14 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-public class MobileEtisalat implements Services {
+public class MobileEtisalat extends Services {
 
 	String ServiceName = "MobileEtisalat";
 	public double price = 250;
-	public Payment payment;
-
-	@Override
+	Payment p;
 	public double pay() {
-		return 0;
+		return p.pay(price);
 	}
-
 	public String getName() {
 		return this.ServiceName;
 	}
@@ -40,11 +37,6 @@ public class MobileEtisalat implements Services {
 	public String description() {
 		// TODO Auto-generated method stub
 		return "welcome to the services of " + this.ServiceName;
-	}
-
-	@Override
-	public void setPayment(Payment payMethod) {
-		this.payment = payMethod;
 	}
 
 
