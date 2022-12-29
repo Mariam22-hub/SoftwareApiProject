@@ -44,12 +44,15 @@ public class userRepository {
     }
     public String PayWallet(Services service, User user)
     {
-        Payment payMethod= (Payment) new PayByWallet(user.getWallet());
+        Payment payMethod= new PayByWallet(user.getWallet());
         service.setPayment(payMethod);
         service.pay();
-        user.wallet.decriment(service.getPrice());
-        return "Payment by wallet done your amount is" + user.wallet.getAmount();
+        user.wallet.decrement(service.getPrice());
+        return "Payment by wallet done\nYour wallet's amount is " + user.wallet.getAmount();
     }
 
 
+    public String signIn(User regesteredUser) {
+        return null;
+    }
 }
