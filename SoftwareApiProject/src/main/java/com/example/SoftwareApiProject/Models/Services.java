@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 public interface Services {
 
-//    public static ArrayList<User> usersSubscribed = new ArrayList<User>();
+    public static ArrayList<User> usersSubscribed = new ArrayList<User>();
+
+    public String name = null;
+    public double price = 0.0;
 
     public String getName();
 

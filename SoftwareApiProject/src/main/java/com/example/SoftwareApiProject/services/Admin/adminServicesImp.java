@@ -1,4 +1,4 @@
-package com.example.SoftwareApiProject.services;
+package com.example.SoftwareApiProject.services.Admin;
 
 import com.example.SoftwareApiProject.Repository.servicesProvidersRepository;
 import org.springframework.beans.factory.annotation.Autowired;

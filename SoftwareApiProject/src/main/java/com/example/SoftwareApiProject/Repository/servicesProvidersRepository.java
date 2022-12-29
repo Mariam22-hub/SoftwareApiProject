@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 @Service
 public class servicesProvidersRepository {
-    @Autowired
     public static ArrayList<Services> serviceProviders = new ArrayList<Services>();
 
     public servicesProvidersRepository() {
@@ -33,7 +32,7 @@ public class servicesProvidersRepository {
         serviceProviders.add(new MobileWE());
     }
 
-    public boolean subscribeUser(User user, String serviceName, String serviceType) {
+    public boolean subscribeUser(User user, String serviceName) {
         for (Services service : serviceProviders) {
             if (service.getName().equals(serviceName)) {
                 service.getArray().add(user);

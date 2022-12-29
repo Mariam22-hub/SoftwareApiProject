@@ -1,4 +1,4 @@
-package com.example.SoftwareApiProject.services;
+package com.example.SoftwareApiProject.services.serviceProviders;
 
 import com.example.SoftwareApiProject.Models.User;
 import com.example.SoftwareApiProject.Repository.servicesProvidersRepository;
@@ -11,7 +11,7 @@ public class servicesProvidersImp implements serviceProviders{
     servicesProvidersRepository servicesRepo;
 
     @Override
-    public boolean subscribeUser(String serviceName, User user, String serviceType) {
-        return servicesRepo.subscribeUser(user, serviceName, serviceType);
+    public boolean subscribeUser(String serviceName, User user) {
+        return servicesRepo.subscribeUser(user, serviceName);
     }
 }

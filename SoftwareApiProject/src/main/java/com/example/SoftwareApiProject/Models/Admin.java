@@ -4,14 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
-@Builder
-@AllArgsConstructor
+@Component
 @NoArgsConstructor
 @Data
 public class Admin {
 
-    String name;
-    String password;
+    String name = "admin";
+    String password = "admin";
+
+
 
 }

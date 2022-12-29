@@ -10,7 +10,7 @@ public class MobileWE implements Services {
 
 	public static ArrayList<User> usersSubscribed = new ArrayList<User>();
 
-	String ServiceName = "MobileWe";
+	String ServiceName = "MobileWE";
 
 	public double price = 500;
 

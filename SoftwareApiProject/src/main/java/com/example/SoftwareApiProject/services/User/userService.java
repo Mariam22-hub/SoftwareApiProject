@@ -1,4 +1,4 @@
-package com.example.SoftwareApiProject.services;
+package com.example.SoftwareApiProject.services.User;
 
 import com.example.SoftwareApiProject.Models.User;
 import jakarta.validation.Valid;
@@ -8,6 +8,6 @@ public interface userService {
 
     User getUser(String name);
 
-    String subscribe(String username, String serviceName, String serviceType);
+    String subscribe(String username, String serviceName);
 }
 
