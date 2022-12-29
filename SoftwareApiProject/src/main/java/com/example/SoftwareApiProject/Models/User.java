@@ -10,7 +10,7 @@ public class User{
     String email;
     Wallet wallet;
     CreditCard creditCard;
-    String serviceName = "";
+    String serviceType = "";
 
     public String getUsername() {
         return username;

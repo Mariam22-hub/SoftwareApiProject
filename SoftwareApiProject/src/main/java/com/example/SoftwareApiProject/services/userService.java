@@ -8,6 +8,6 @@ public interface userService {
 
     User getUser(String name);
 
-    String subscribe(String username, String serviceName);
+    String subscribe(String username, String serviceName, String serviceType);
 }
 
