@@ -64,6 +64,11 @@ public class userServiceImp implements userService {
     }
 
     @Override
+    public String signIn(User regesteredUser) {
+        return userRepo.signIn(regesteredUser);
+    }
+
+    @Override
     public ArrayList<Services> search(String serviceName) {
         return servicesimp.searchProviders(serviceName);
     }

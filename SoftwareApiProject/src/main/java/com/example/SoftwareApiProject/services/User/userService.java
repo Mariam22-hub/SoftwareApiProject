@@ -15,6 +15,9 @@ public interface userService {
 
     String PayByWallet(String username, String serviceName);
 
+    String signIn(User user);
+
+
     public ArrayList<Services> search(String serviceName);
 }
 

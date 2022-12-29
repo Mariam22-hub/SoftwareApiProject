@@ -17,9 +17,14 @@ public class userController {
     @Autowired
     userService service;
 
-    @PostMapping("/users")
+    @PostMapping("/user/registers")
     public String addUser(@Valid @RequestBody User user){
         return service.addUser(user);
+    }
+
+    @PostMapping("/user/login")
+    public String signIn(@Valid @RequestBody User user){
+        return service.signIn(user);
     }
 
     @GetMapping("/users/{username}")

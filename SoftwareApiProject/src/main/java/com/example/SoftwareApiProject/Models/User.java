@@ -11,6 +11,15 @@ public class User{
    public Wallet wallet;
     CreditCard creditCard;
     String serviceType = "";
+    boolean signedIn = false;
+
+    public boolean getisSignedIn() {
+        return signedIn;
+    }
+
+    public void setSignedIn(boolean signedIn) {
+        this.signedIn = signedIn;
+    }
 
     public String getUsername() {
         return username;
