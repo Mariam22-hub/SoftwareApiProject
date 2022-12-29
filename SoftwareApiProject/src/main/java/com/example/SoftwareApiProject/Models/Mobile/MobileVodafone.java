@@ -1,25 +1,21 @@
-package com.example.SoftwareApiProject.Models.Internet;
+
+package com.example.SoftwareApiProject.Models.Mobile;
 
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
-@Component
-public class InternetEtisalat implements Services {
+public class MobileVodafone implements Services {
 
 	public static ArrayList<User> usersSubscribed = new ArrayList<User>();
-	String name;
-	double price;
-	public InternetEtisalat() {
-		name = "InternetEtisalat";;
-		price = 190;
-	}
+	String ServiceName = "MobileVodafone";
 
-	@Override
+	public double price = 400;
+
 	public String getName() {
-		return name;
+		// TODO Auto-generated method stub
+		return ServiceName;
 	}
 
 	@Override
@@ -32,9 +28,12 @@ public class InternetEtisalat implements Services {
 		return usersSubscribed;
 	}
 
-	@Override
+	public MobileVodafone(){}
+
+
 	public String description() {
-		return null;
+		// TODO Auto-generated method stub
+		return "welcome to the services of " + this.ServiceName;
 	}
 
 

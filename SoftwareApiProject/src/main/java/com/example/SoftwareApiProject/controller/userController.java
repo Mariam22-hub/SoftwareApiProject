@@ -1,6 +1,5 @@
 package com.example.SoftwareApiProject.controller;
 
-import com.example.SoftwareApiProject.Models.Provider;
 import com.example.SoftwareApiProject.Models.User;
 import com.example.SoftwareApiProject.services.userService;
 import jakarta.validation.Valid;

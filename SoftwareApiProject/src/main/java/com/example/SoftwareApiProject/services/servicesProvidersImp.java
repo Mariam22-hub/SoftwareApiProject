@@ -10,20 +10,8 @@ public class servicesProvidersImp implements serviceProviders{
     @Autowired
     servicesProvidersRepository servicesRepo;
 
-//    @Override
-//    public String subscribeUser(String serviceName, User user) {
-//        for (Services services : servicesProvidersRepository.serviceProviders){
-//            if (serviceName.equals(services.getName())){
-//                services.getArray().add(user);
-//                return services.getName();
-//            }
-//        }
-//        return null;
-//    }
-
-    //subscribing to vodafone
     @Override
-    public String subscribeUser(String serviceName, User user, String serviceType) {
+    public boolean subscribeUser(String serviceName, User user, String serviceType) {
         return servicesRepo.subscribeUser(user, serviceName, serviceType);
     }
 }

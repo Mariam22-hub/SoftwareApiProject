@@ -1,4 +1,5 @@
-package com.example.SoftwareApiProject.Models.Internet;
+
+package com.example.SoftwareApiProject.Models.Mobile;
 
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
@@ -7,19 +8,13 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-public class InternetEtisalat implements Services {
+public class MobileEtisalat implements Services {
 
-	public static ArrayList<User> usersSubscribed = new ArrayList<User>();
-	String name;
-	double price;
-	public InternetEtisalat() {
-		name = "InternetEtisalat";;
-		price = 190;
-	}
+	String ServiceName = "MobileEtisalat";
+	public double price = 250;
 
-	@Override
 	public String getName() {
-		return name;
+		return this.ServiceName;
 	}
 
 	@Override
@@ -29,12 +24,15 @@ public class InternetEtisalat implements Services {
 
 	@Override
 	public ArrayList<User> getArray() {
-		return usersSubscribed;
+		return null;
 	}
 
-	@Override
+
+	public MobileEtisalat(){}
+
 	public String description() {
-		return null;
+		// TODO Auto-generated method stub
+		return "welcome to the services of " + this.ServiceName;
 	}
 
 

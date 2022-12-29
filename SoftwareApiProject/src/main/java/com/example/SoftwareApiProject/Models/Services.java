@@ -2,25 +2,15 @@ package com.example.SoftwareApiProject.Models;
 
 import java.util.ArrayList;
 
-public abstract class Services {
+public interface Services {
 
-    public static ArrayList<User> usersSubscribed = new ArrayList<User>();
+//    public static ArrayList<User> usersSubscribed = new ArrayList<User>();
 
-    public String name;
-    public double price;
-    public String getName() {
-        return name;
-    }
+    public String getName();
 
-    public double getPrice() {
-        return price;
-    }
+    public double getPrice();
 
-    public ArrayList<User> getArray(){
-        return usersSubscribed;
-    }
+    public ArrayList<User> getArray();
 
-    public String description() {
-        return "welcome to the services of " + this.name;
-    }
+    public String description();
 }
