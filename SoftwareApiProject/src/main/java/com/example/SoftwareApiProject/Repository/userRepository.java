@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+import static com.example.SoftwareApiProject.Repository.adminRepository.overallDiscount;
+
 @Service
 public class userRepository {
 
@@ -43,11 +45,16 @@ public class userRepository {
     }
     public String PayWallet(Services service, User user)
     {
-        Payment payMethod = new PayByWallet(user.getWallet());
-        service.setPayment(payMethod);
-        service.pay();
-        user.wallet.decriment(service.getPrice());
-        return "Payment by wallet done, your amount is " + user.wallet.getAmount();
+//        Payment payMethod = new PayByWallet(user.getWallet());
+//        service.setPayment(payMethod);
+//        if (overallDiscount.isFlag()){
+//            overallDiscount.pay(service);
+//        }
+//        else {
+//            service.pay();
+//        }
+        user.wallet.decrement(service.getPrice());
+        return "Payment by wallet done\nYour wallet amount's is " + user.wallet.getAmount();
     }
 
 

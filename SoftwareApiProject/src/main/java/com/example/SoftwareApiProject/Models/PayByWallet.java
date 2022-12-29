@@ -2,7 +2,7 @@ package com.example.SoftwareApiProject.Models;
 
 public class PayByWallet implements Payment {
     Wallet wallet;
-
+    @Override
     public double pay(double amount) {
 
         if(wallet.getAmount() >= amount){
@@ -21,6 +21,6 @@ public class PayByWallet implements Payment {
     }
 
     public void UpdateAmount(double amount) {
-        wallet.decriment(amount);
+        wallet.decrement(amount);
     }
 }

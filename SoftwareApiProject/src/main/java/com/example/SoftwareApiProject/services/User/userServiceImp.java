@@ -1,12 +1,18 @@
 package com.example.SoftwareApiProject.services.User;
 
 
+import com.example.SoftwareApiProject.Models.PayByWallet;
+import com.example.SoftwareApiProject.Models.Payment;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import com.example.SoftwareApiProject.Repository.userRepository;
 import com.example.SoftwareApiProject.services.serviceProviders.servicesProvidersImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+
+import static com.example.SoftwareApiProject.Repository.adminRepository.overallDiscount;
 
 @Service
 public class userServiceImp implements userService {
@@ -43,7 +49,23 @@ public class userServiceImp implements userService {
     public String PayByWallet(String username, String serviceName) {
         User user = userRepo.getUser(username);
         Services service = servicesimp.findSer(serviceName);
+
+        Payment payMethod = new PayByWallet(user.getWallet());
+        service.setPayment(payMethod);
+
+        if (overallDiscount.isFlag()){
+            overallDiscount.pay(service);
+        }
+        else {
+            service.pay();
+        }
+
         return userRepo.PayWallet(service , user);
+    }
+
+    @Override
+    public ArrayList<Services> search(String serviceName) {
+        return servicesimp.searchProviders(serviceName);
     }
 
 }
