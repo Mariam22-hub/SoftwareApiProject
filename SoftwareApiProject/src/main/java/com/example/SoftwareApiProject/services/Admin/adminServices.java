@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public interface adminServices {
-    public String addProvider(NewService service);
+//    public String addProvider(NewService service);
+
+    String addProvider();
 
     String addOverallDiscount(double percentage);
 

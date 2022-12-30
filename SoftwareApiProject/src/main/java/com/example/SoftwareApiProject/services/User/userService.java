@@ -23,6 +23,6 @@ public interface userService {
 
     String pay(String username, String serviceName, String paymentMethod);
 
-    String addFunds(double amount);
+//    String addFunds(double amount);
 }
 

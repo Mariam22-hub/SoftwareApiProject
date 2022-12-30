@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
-import static com.example.SoftwareApiProject.Repository.adminRepository.*;
+import static com.example.SoftwareApiProject.Repository.adminRepository.overallDiscount;
 
 @Service
 public class userServiceImp implements userService {
@@ -46,53 +46,20 @@ public class userServiceImp implements userService {
 
 
     public String pay(String username, String serviceName, String PaymentMethod) {
-
         User user = userRepo.getUser(username);
         Services service = servicesimp.findSer(serviceName);
-
         double amount = 0;
-        boolean flag = false;
-
-        for (User users : service.getArray()){
-            if (users == user){
-                flag = true;
-                break;
-            }
-        }
-
-        if (!flag){
-            return "user is not subscribed to this service";
-        }
 
         Payment payMethod = checkPaymentType(PaymentMethod, user);
         service.setPayment(payMethod);
-
         if (overallDiscount.isFlag()){
             amount = overallDiscount.pay(service);
             amount = specific.pay(service,amount);
             return userRepo.pay(service , user, PaymentMethod, amount);
         }
-
         amount = service.pay();
         amount = specific.pay(service,amount);
         return userRepo.pay(service , user, PaymentMethod, amount);
-    }
-
-    @Override
-    public String addFunds(double amount) {
-        if(userRepo.loggedInUser != null){
-
-            userRepo.loggedInUser.wallet.increment(amount);
-            userRepo.loggedInUser.creditCard.decrement(amount);
-
-            AddWalletTransactions t = new AddWalletTransactions(userRepo.loggedInUser.getUsername(),amount);
-            walletTransactions.add(t);
-
-            return "amount: " + amount +" has been added to your wallet\nYour wallet's new balance is "+userRepo.loggedInUser.wallet.getAmount();
-        }
-        else{
-            return "please sign in first";
-        }
     }
 
     public Payment checkPaymentType(String PaymentMethod, User user){
@@ -126,14 +93,13 @@ public class userServiceImp implements userService {
     public String doRefund(String userName, String serviceName){
         User user = userRepo.getUser(userName);
         Services service = servicesimp.findSer(serviceName);
-
         for(int i=0; i<user.transactionPay.size(); i++){
-
             if(user.transactionPay.get(i).getService().getName().equals(service.getName())  && !(user.transactionPay.get(i).isRefund())){
                 user.transactionPay.get(i).setRefund(true);
                 user.transactionPay.get(i).setUser(user.getUsername());
-
-                allTransactions.add(user.transactionPay.get(i));
+                Transactions tran = user.transactionPay.get(i);
+                tran.setId(allTransactions.size());
+                allTransactions.add(tran);
                 return "refund process completed";
             }
         }
@@ -141,17 +107,13 @@ public class userServiceImp implements userService {
     }
     //if user want to check if his refund request is accepted or not
     public String checkRefund(String userName, String serviceName){
-
         User user = userRepo.getUser(userName);
         Services service = servicesimp.findSer(serviceName);
-
         for(int i=0; i<user.transactionPay.size(); i++) {
 
             if (!(user.transactionPay.get(i).isRefund()) && user.transactionPay.get(i).isRefunded() && user.transactionPay.get(i).isChecked()
                     && service.getName().equals(user.transactionPay.get(i).getService().getName())) {
-
                 user.transactionPay.remove(user.transactionPay.get(i));
-
                 return "your request to "+service.getName()+" refund accepted successfully";
             }
 
@@ -159,7 +121,12 @@ public class userServiceImp implements userService {
                     && service.getName().equals(user.transactionPay.get(i).getService().getName()))
 
                 return "your refund request rejected";
+
+
+            else if(user.transactionPay.get(i).isRefund() && !(user.transactionPay.get(i).isChecked())
+                    && service.getName().equals(user.transactionPay.get(i).getService().getName()))
+                return "you haven't got response yet";
         }
-        return "you haven't got response yet";
+        return "bad request";
     }
 }

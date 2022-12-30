@@ -1,18 +1,15 @@
 package com.example.SoftwareApiProject.Repository;
 
-import com.example.SoftwareApiProject.Models.Services;
-import com.example.SoftwareApiProject.Models.Transactions;
-import com.example.SoftwareApiProject.Models.User;
+import com.example.SoftwareApiProject.Models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-import static com.example.SoftwareApiProject.Repository.adminRepository.transactionPays;
+import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
 
 @Service
 public class userRepository {
-    static public User loggedInUser;
 
     @Autowired
     public static ArrayList<User> usersArray = new ArrayList<User>();
@@ -20,12 +17,11 @@ public class userRepository {
     public String addUser(User incomingUser) {
         for (User users : usersArray) {
             if (users.getUsername().equals(incomingUser.getUsername()) || users.getEmail().equals(incomingUser.getEmail())) {
+                users.setSignedIn(true);
                 return "user already added";
             }
         }
         usersArray.add(incomingUser);
-        incomingUser.setSignedIn(true);
-        loggedInUser = incomingUser;
         return "user added successfully";
     }
 
@@ -52,22 +48,20 @@ public class userRepository {
         if(PaymentMethod.equals("Wallet")){
             user.wallet.decrement(amount);
             //store transaction
-            Transactions t = new Transactions(service,user.getUsername(),amount);
-            transactionPays.add(t);
-            //user.transactionPay.add(t);
+            Transactions t = new Transactions(service, user.getUsername());
+
+            user.transactionPay.add(t);
             return "Payment by wallet is successful\nyour  amount is " + user.wallet.getAmount();
         }
         if (PaymentMethod.equals("CreditCard")) {
             user.getCreditCard().decrement(amount);
-            Transactions t = new Transactions(service,user.getUsername(),amount);
-            transactionPays.add(t);
-
+            Transactions t = new Transactions(service, user.getUsername());
+            user.transactionPay.add(t);
             return "Payment by creditCard is successful\nyour amount is " + user.getCreditCard().getAmount();
         }
         if (PaymentMethod.equals("Cash")) {
-            Transactions t = new Transactions(service,user.getUsername(),amount);
-            transactionPays.add(t);
-
+            Transactions t = new Transactions(service, user.getUsername());
+            user.transactionPay.add(t);
             return "Payment by Cash is successful\nyou Paid " + service.getPrice();
         }
 
@@ -77,9 +71,8 @@ public class userRepository {
 
     public String signIn(User regesteredUser) {
         for (User users : usersArray) {
-            if (users.getUsername().equals(regesteredUser.getUsername()) && users.getEmail().equals(regesteredUser.getEmail())&&users.getPassword().equals(regesteredUser.getPassword())) {
+            if (users.getUsername().equals(regesteredUser.getUsername()) && users.getEmail().equals(regesteredUser.getEmail())) {
                 users.setSignedIn(true);
-                loggedInUser = users;
                 return "you signed in successfully";
             }
         }

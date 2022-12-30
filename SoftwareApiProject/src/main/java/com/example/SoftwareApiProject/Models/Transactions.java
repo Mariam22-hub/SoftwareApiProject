@@ -1,13 +1,16 @@
 package com.example.SoftwareApiProject.Models;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 public class Transactions {
+    private long id = 0;
     private Services service;
     private String user;
-    double amount;
-
     //if user want to refund a transaction -> refund = true
-   //if admin accept refund -> refunded = true
-    //if true -> refund accepted
+    //if admin accept refund -> refunded = true
+    //if true true -> refund accepted
     //if true false -> refund rejected
     private boolean refund = false;
     private boolean refunded = false;
@@ -29,10 +32,9 @@ public class Transactions {
 
     }
 
-    public Transactions(Services service, String user,double amount) {
+    public Transactions(Services service, String user) {
         this.service = service;
         this.user = user;
-        this.amount = amount;
     }
 
     public boolean isRefund() {
@@ -65,5 +67,17 @@ public class Transactions {
 
     public void setRefunded(boolean refunded) {
         this.refunded = refunded;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void incrementId(){
+        this.id++;
     }
 }
