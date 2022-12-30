@@ -38,9 +38,8 @@ public class CancerHospitals implements Services {
 
 	@Override
 	public void setDiscountPercentage(double discountPercentage) {
-		this.DiscountPercentage = discountPercentage;
+		DiscountPercentage = 100-discountPercentage;
 	}
-
 	@Override
 	public ArrayList<User> getArray() {
 		return usersSubscribed;
