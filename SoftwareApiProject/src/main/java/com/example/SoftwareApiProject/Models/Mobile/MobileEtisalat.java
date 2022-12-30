@@ -1,6 +1,7 @@
 
 package com.example.SoftwareApiProject.Models.Mobile;
 
+import com.example.SoftwareApiProject.Models.Discounts.Discounts;
 import com.example.SoftwareApiProject.Models.Payment;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
@@ -25,7 +26,13 @@ public class MobileEtisalat implements Services {
 	public double getPrice() {
 		return price;
 	}
-
+	public double DiscountPercentage =100;
+	public double getDiscountPercentage() {
+		return DiscountPercentage;
+	}
+	public void setDiscountPercentage(double discountPercentage) {
+		DiscountPercentage = 100-discountPercentage;
+	}
 	@Override
 	public ArrayList<User> getArray() {
 		return null;

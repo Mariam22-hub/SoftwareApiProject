@@ -2,6 +2,7 @@ package com.example.SoftwareApiProject.services.User;
 
 
 import com.example.SoftwareApiProject.Models.*;
+import com.example.SoftwareApiProject.Models.Discounts.specific;
 import com.example.SoftwareApiProject.Repository.userRepository;
 import com.example.SoftwareApiProject.services.serviceProviders.servicesProvidersImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +53,11 @@ public class userServiceImp implements userService {
         service.setPayment(payMethod);
         if (overallDiscount.isFlag()){
             amount = overallDiscount.pay(service);
+            amount = specific.pay(service,amount);
             return userRepo.pay(service , user, PaymentMethod, amount);
         }
         amount = service.pay();
-
+        amount = specific.pay(service,amount);
         return userRepo.pay(service , user, PaymentMethod, amount);
     }
 

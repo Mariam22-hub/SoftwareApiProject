@@ -6,4 +6,6 @@ public interface adminServices {
     public String addProvider();
 
     String addOverallDiscount(double percentage);
+
+    String addSpecificDiscount(double percentage, String serviceName);
 }

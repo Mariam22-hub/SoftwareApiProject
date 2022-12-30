@@ -21,7 +21,15 @@ public class InternetEtisalat implements Services {
 		name = "InternetEtisalat";;
 		price = 190;
 	}
-	
+	public double DiscountPercentage =100;
+	public double getDiscountPercentage() {
+		return DiscountPercentage;
+	}
+
+	public void setDiscountPercentage(double discountPercentage) {
+		DiscountPercentage = 100-discountPercentage;
+	}
+
 	@Override
 	public String getName() {
 		return name;
@@ -48,7 +56,7 @@ public class InternetEtisalat implements Services {
 
 	@Override
 	public void setPayment(Payment payMethod) {
-		this.payment = payMethod;
+		p = payMethod;
 	}
 
 

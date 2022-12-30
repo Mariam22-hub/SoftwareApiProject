@@ -14,7 +14,7 @@ public class userRepository {
 
     public String addUser(User incomingUser) {
         for (User users : usersArray) {
-            if (users.getUsername().equals(incomingUser.getUsername()) || users.getEmail().equals(incomingUser.getEmail())) {
+            if (users.getUsername().equals(incomingUser.getUsername()) /*|| users.getEmail().equals(incomingUser.getEmail())*/) {
                 users.setSignedIn(true);
                 return "user already added";
             }
@@ -42,23 +42,6 @@ public class userRepository {
     }
 
     public String pay(Services service, User user , String PaymentMethod, double amount) {
-//        Payment payMethod=null;
-//
-//        if(PaymentMethod.equals("Wallet")){
-//        payMethod = new PayByWallet(user.getWallet());
-//        }
-//        if(PaymentMethod.equals("CreditCard"))
-//        {
-//        payMethod = new PayByCard(user.getCreditCard());
-//        }
-//        if(PaymentMethod.equals("Cash"))
-//        {
-//          payMethod = new PayByCash(user.getUsername());
-//
-//        }
-//        service.setPayment(payMethod);
-//        service.pay();
-
         if(PaymentMethod.equals("Wallet")){
             user.wallet.decrement(amount);
             return "Payment by wallet is successful\nyour  amount is " + user.wallet.getAmount();
@@ -70,7 +53,7 @@ public class userRepository {
         }
         if(PaymentMethod.equals("Cash"))
         {
-            return "Payment by Cash is successful\nyou Paid " + service.getPrice();
+            return "Payment by Cash is successful\nyou Paid " + amount;
         }
 
         return "";

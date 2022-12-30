@@ -1,47 +1,33 @@
-//package com.example.SoftwareApiProject.Models.Discounts;
-//
-//import Payment.Payment;
-//import Services.IFormHandler;
-//import Services.Services;
-//public class specific implements Discounts {
-//
-//	double DiscountAmount = 0;
-//	Services service;
+package com.example.SoftwareApiProject.Models.Discounts;
+
+import com.example.SoftwareApiProject.Models.Services;
+
+public class specific extends Discounts {
+
+	double DiscountAmount = 0;
+	Services service;
 //	private Payment p;
-//
-//	public specific(Services service ,double DiscountAmount)
-//	{	this.DiscountAmount=DiscountAmount;
-//		this.service = service;
-//	}
-//
-//
-//	public double pay() {
-//		double pay = service.pay() * (DiscountAmount / 100);
-//		System.out.println("Paid amount after discount: " + pay + "\n");
-//
-//		return pay;
-//}
-//
-//	public String description() {
-//		return null;
-//	}
-//
+
+	public specific(double DiscountAmount)
+	{	this.DiscountAmount=100-DiscountAmount;
+
+	}
+
+	public specific() {
+
+	}
+
+
+	public static double pay(Services service, double amount) {
+		double pay = (service.getDiscountPercentage()/100) * amount;
+		return pay;
+	}
+
+
 //	public void setPayment(Payment p) {
 //		this.p = p;
 //	}
 //
-//
-//	public void setHandler(IFormHandler hn) {
-//
-//	}
-//
-//
-//	public String getName() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//
-//
-//
-//}
+
+
+}

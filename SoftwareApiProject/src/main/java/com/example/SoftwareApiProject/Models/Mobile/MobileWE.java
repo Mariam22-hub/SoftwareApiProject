@@ -24,7 +24,13 @@ public class MobileWE implements Services {
 		return ServiceName;
 
 	}
-
+	public double DiscountPercentage =100;
+	public double getDiscountPercentage() {
+		return DiscountPercentage;
+	}
+	public void setDiscountPercentage(double discountPercentage) {
+		DiscountPercentage = 100-discountPercentage;
+	}
 
 
 	@Override

@@ -9,6 +9,8 @@ public interface Services {
     public String getName();
 
     public double getPrice();
+    public double getDiscountPercentage();
+    public void setDiscountPercentage(double discountPercentage);
 
     public ArrayList<User> getArray();
 

@@ -28,5 +28,9 @@ public class adminController {
     public String addOverallDiscount(@RequestParam (value = "percentage") double percentage){
         return adminServices.addOverallDiscount(percentage);
     }
+    @PostMapping("/admin/specific")
+    public String addSpecificDiscount(@RequestParam(value = "percentage") double percentage, @RequestParam(value = "serviceName") String serviceName){
+        return adminServices.addSpecificDiscount(percentage,serviceName);
+    }
 
 }

@@ -19,7 +19,13 @@ public class MobileOrange implements Services {
 	public String getName() {
 		return this.ServiceName;
 	}
-
+	public double DiscountPercentage =100;
+	public double getDiscountPercentage() {
+		return DiscountPercentage;
+	}
+	public void setDiscountPercentage(double discountPercentage) {
+		DiscountPercentage = 100-discountPercentage;
+	}
 
 	@Override
 	public double getPrice() {

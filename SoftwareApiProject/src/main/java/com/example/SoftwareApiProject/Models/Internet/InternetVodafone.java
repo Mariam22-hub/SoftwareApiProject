@@ -18,7 +18,13 @@ public class InternetVodafone implements Services {
     public double pay() {
         return p.pay(price);
     }
-
+    public double DiscountPercentage =100;
+    public double getDiscountPercentage() {
+        return DiscountPercentage;
+    }
+    public void setDiscountPercentage(double discountPercentage) {
+        DiscountPercentage = 100-discountPercentage;
+    }
     public Payment payment;
 
     public InternetVodafone() {
@@ -34,7 +40,7 @@ public class InternetVodafone implements Services {
 
     @Override
     public void setPayment(Payment payMethod) {
-        this.payment = payMethod;
+        p = payMethod;
     }
 
     @Override

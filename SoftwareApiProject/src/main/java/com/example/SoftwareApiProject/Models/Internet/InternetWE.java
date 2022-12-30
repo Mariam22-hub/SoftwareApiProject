@@ -21,7 +21,13 @@ public class InternetWE implements Services {
         price = 190;
         name = "InternetWE";
     }
-
+    public double DiscountPercentage =100;
+    public double getDiscountPercentage() {
+        return DiscountPercentage;
+    }
+    public void setDiscountPercentage(double discountPercentage) {
+        DiscountPercentage = 100-discountPercentage;
+    }
     public String description() {
 
         return "welcome to the services of " + this.name;
@@ -29,7 +35,7 @@ public class InternetWE implements Services {
 
     @Override
     public void setPayment(Payment payMethod) {
-        this.p = payMethod;
+        p = payMethod;
     }
 
     @Override
