@@ -8,6 +8,8 @@ import com.example.SoftwareApiProject.services.serviceProviders.servicesProvider
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class userServiceImp implements userService {
     @Autowired
@@ -49,6 +51,11 @@ public class userServiceImp implements userService {
     @Override
     public String signIn(User regesteredUser) {
         return userRepo.signIn(regesteredUser);
+    }
+
+    @Override
+    public ArrayList<Services> search(String serviceName) {
+        return servicesimp.searchProviders(serviceName);
     }
 
 }
