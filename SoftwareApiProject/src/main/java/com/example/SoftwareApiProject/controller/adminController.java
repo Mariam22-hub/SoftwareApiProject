@@ -1,5 +1,6 @@
 package com.example.SoftwareApiProject.controller;
 
+import com.example.SoftwareApiProject.Models.AddWalletTransactions;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.Transactions;
 import com.example.SoftwareApiProject.services.Admin.adminServicesImp;
@@ -42,6 +43,11 @@ public class adminController {
     @GetMapping("/admin/userTransactions")
     public ArrayList<Transactions> userPayTrans(@RequestParam ("userName") String userName){
         return adminServices.userPayTrans(userName);
+
+    }
+    @GetMapping("/admin/userWalletTransactions")
+    public ArrayList<AddWalletTransactions> userWalletTrans(@RequestParam ("userName") String userName){
+        return adminServices.userWalletTrans(userName);
 
     }
 

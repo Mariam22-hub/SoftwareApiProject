@@ -1,5 +1,6 @@
 package com.example.SoftwareApiProject.services.Admin;
 
+import com.example.SoftwareApiProject.Models.AddWalletTransactions;
 import com.example.SoftwareApiProject.Models.Discounts.overall;
 import com.example.SoftwareApiProject.Models.Transactions;
 import com.example.SoftwareApiProject.Models.Discounts.specific;
@@ -54,5 +55,7 @@ public class adminServicesImp implements adminServices{
     }
 
 
-
+    public ArrayList<AddWalletTransactions> userWalletTrans(String userName) {
+        return adminRepo.userWalletTrans(userName);
+    }
 }
