@@ -1,16 +1,20 @@
 package com.example.SoftwareApiProject.services.Admin;
 
 import com.example.SoftwareApiProject.Models.Discounts.overall;
+import com.example.SoftwareApiProject.Models.Transactions;
 import com.example.SoftwareApiProject.Models.Discounts.specific;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Repository.adminRepository;
 import com.example.SoftwareApiProject.Repository.servicesProvidersRepository;
-import com.example.SoftwareApiProject.services.serviceProviders.servicesProvidersImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import static com.example.SoftwareApiProject.Repository.adminRepository.overallDiscount;
 import static com.example.SoftwareApiProject.Repository.adminRepository.specific;
+
+import java.util.ArrayList;
+
+import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
+import static com.example.SoftwareApiProject.Repository.adminRepository.overallDiscount;
 
 @Service
 public class adminServicesImp implements adminServices{
@@ -29,6 +33,16 @@ public class adminServicesImp implements adminServices{
         overallDiscount = new overall(percentage);
         overallDiscount.setFlag(true);
         return "Overall discount is added with " + percentage + "%";
+    }
+
+    @Override
+    public ArrayList<Transactions> listAllRefundReq() {
+        return adminRepo.findAllRefund();
+    }
+
+    @Override
+    public String updateRefund(int transId, int refundState) {
+        return adminRepo.updateUserRefund( transId, refundState);
     }
 
     @Override

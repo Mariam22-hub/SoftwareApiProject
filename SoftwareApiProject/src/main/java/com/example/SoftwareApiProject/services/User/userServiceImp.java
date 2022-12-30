@@ -10,12 +10,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
 import static com.example.SoftwareApiProject.Repository.adminRepository.overallDiscount;
 
 @Service
 public class userServiceImp implements userService {
     @Autowired
-    userRepository userRepo;
+     userRepository userRepo;
     @Autowired
     servicesProvidersImp servicesimp;
 
@@ -89,4 +90,36 @@ public class userServiceImp implements userService {
         return servicesimp.searchProviders(serviceName);
     }
 
+    public String doRefund(String userName, String serviceName){
+        User user = userRepo.getUser(userName);
+        Services service = servicesimp.findSer(serviceName);
+        for(int i=0; i<user.transactionPay.size(); i++){
+            if(user.transactionPay.get(i).getService().getName().equals(service.getName())  && !(user.transactionPay.get(i).isRefund())){
+                user.transactionPay.get(i).setRefund(true);
+                user.transactionPay.get(i).setUser(user.getUsername());
+
+                allTransactions.add(user.transactionPay.get(i));
+                return "refund process completed";
+            }
+        }
+        return "you can not refund a not completed transaction";
+    }
+    //if user want to check if his refund request is accepted or not
+    public String checkRefund(String userName, String serviceName){
+        User user = userRepo.getUser(userName);
+        Services service = servicesimp.findSer(serviceName);
+        for(int i=0; i<user.transactionPay.size(); i++) {
+            if (!(user.transactionPay.get(i).isRefund()) && user.transactionPay.get(i).isRefunded() && user.transactionPay.get(i).isChecked()
+                    && service.getName().equals(user.transactionPay.get(i).getService().getName())) {
+                user.transactionPay.remove(user.transactionPay.get(i));
+                return "your request to "+service.getName()+" refund accepted successfully";
+            }
+
+            else if(!(user.transactionPay.get(i).isRefund()) && !(user.transactionPay.get(i).isRefunded()) && user.transactionPay.get(i).isChecked()
+                    && service.getName().equals(user.transactionPay.get(i).getService().getName()))
+
+                return "your refund request rejected";
+        }
+        return "you haven't got response yet";
+    }
 }

@@ -13,11 +13,16 @@ public interface userService {
 
     String subscribe(String username, String serviceName);
 
-    String pay(String username, String serviceName,String PaymentMethod);
+    //String PayByWallet(String username, String serviceName, String paymentMethod);
 
     String signIn(User user);
 
+    String doRefund(String username, String serviceName);
+
+    String checkRefund(String username, String serviceName);
 
     public ArrayList<Services> search(String serviceName);
+
+    String pay(String username, String serviceName, String paymentMethod);
 }
 

@@ -44,5 +44,15 @@ public class userController {
     public ResponseEntity<ArrayList<Services>> search (@RequestParam(value = "serviceName") String serviceName){
         return ResponseEntity.ok(service.search(serviceName));
     }
+    @GetMapping("/users/refund")
+    public ResponseEntity<String> refund(@RequestParam(value = "username") String username, @RequestParam(value = "serviceName") String serviceName)
+    {
+        return ResponseEntity.ok(service.doRefund(username,serviceName));
+    }
+    @GetMapping("/users/checkRefund")
+    public ResponseEntity<String> checkRefund(@RequestParam(value = "username") String username, @RequestParam(value = "serviceName") String serviceName)
+    {
+        return ResponseEntity.ok(service.checkRefund(username,serviceName));
+    }
 
 }

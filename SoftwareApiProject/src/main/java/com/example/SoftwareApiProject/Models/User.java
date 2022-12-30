@@ -1,6 +1,8 @@
 package com.example.SoftwareApiProject.Models;
 
 
+import java.util.ArrayList;
+
 public class User{
 
     //    public static ArrayList<Double> transactions = new ArrayList<Double>();
@@ -9,7 +11,9 @@ public class User{
     String refundState;
     String email;
    public Wallet wallet;
-   public CreditCard creditCard;
+   public ArrayList<Transactions> transactionPay = new ArrayList<>();
+
+    CreditCard creditCard;
     String serviceType = "";
     boolean signedIn = false;
 
@@ -45,9 +49,9 @@ public class User{
         this.refundState = refundState;
     }
 
-   // public String getEmail() {
-     //   return email;
-    //}
+    public String getEmail() {
+        return email;
+    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -79,6 +83,8 @@ public class User{
         this.wallet = wallet;
         this.creditCard = creditCard;
     }
+
+
 
 //    public double checkType(String payMethod, double pay){
 //        if (payMethod.equals("CreditCard")){
