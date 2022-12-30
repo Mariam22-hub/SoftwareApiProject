@@ -35,7 +35,6 @@ public class overall extends Discounts {
 
 	public overall(double DiscountAmount)
 	{	this.DiscountAmount=100-DiscountAmount;
-//		this.service = service;
 		this.flag = true;
 	}
 

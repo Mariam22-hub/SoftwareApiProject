@@ -2,6 +2,7 @@ package com.example.SoftwareApiProject.services.Admin;
 
 import com.example.SoftwareApiProject.Models.AddWalletTransactions;
 import com.example.SoftwareApiProject.Models.Discounts.overall;
+import com.example.SoftwareApiProject.Models.NewService;
 import com.example.SoftwareApiProject.Models.Transactions;
 import com.example.SoftwareApiProject.Models.Discounts.specific;
 import com.example.SoftwareApiProject.Models.Services;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import static com.example.SoftwareApiProject.Repository.adminRepository.specific;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static com.example.SoftwareApiProject.Repository.adminRepository.overallDiscount;
 
@@ -23,15 +25,26 @@ public class adminServicesImp implements adminServices{
     @Autowired
     adminRepository adminRepo;
     @Override
-    public String addProvider(){
-        return null;
+    public String addProvider(NewService service){
+        return adminRepo.addProvider(service);
     }
 
     @Override
     public String addOverallDiscount(double percentage) {
         overallDiscount = new overall(percentage);
         overallDiscount.setFlag(true);
+
         return "Overall discount is added with " + percentage + "%";
+    }
+
+    @Override
+    public String addSpecificDiscount(double percentage, String serviceName) {
+        specific = new specific(percentage);
+        Services s= servicesRepo.findSer(serviceName);
+
+        s.setDiscountPercentage(percentage);
+
+        return "Specific discount for "+ serviceName+" is added with " + percentage + "%";
     }
 
     @Override
@@ -43,17 +56,8 @@ public class adminServicesImp implements adminServices{
     }
     @Override
     public String updateRefund(int transId, int refundState) {
-        return adminRepo.updateUserRefund( transId, refundState);
+        return adminRepo.updateUserRefund(transId, refundState);
     }
-
-    @Override
-    public String addSpecificDiscount(double percentage, String serviceName) {
-    specific = new specific(percentage);
-    Services s= servicesRepo.findSer(serviceName);
-    s.setDiscountPercentage(percentage);
-        return "Specific discount for "+ serviceName+" is added with " + percentage + "%";
-    }
-
 
     public ArrayList<AddWalletTransactions> userWalletTrans(String userName) {
         return adminRepo.userWalletTrans(userName);

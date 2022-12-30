@@ -1,7 +1,6 @@
 
-package com.example.SoftwareApiProject.Models.Mobile;
+package com.example.SoftwareApiProject.Models.Landline;
 
-import com.example.SoftwareApiProject.Models.Discounts.Discounts;
 import com.example.SoftwareApiProject.Models.Payment;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
@@ -10,46 +9,60 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-public class MobileEtisalat implements Services {
+public class Monthly implements Services {
 
-	String ServiceName = "MobileEtisalat";
-	public double price = 250;
+	public String name = "Monthly";
+	public double price = 800;
+	public Payment p = null;
+
 	public static ArrayList<User> usersSubscribed = new ArrayList<User>();
-	Payment p;
-	public double pay() {
-		return p.pay(price);
-	}
+
+	public double DiscountPercentage = 100;
+
+	
 	public String getName() {
-		return this.ServiceName;
+		// TODO Auto-generated method stub
+		return name;
 	}
 
 	@Override
 	public double getPrice() {
 		return price;
 	}
-	public double DiscountPercentage = 100;
+
+	@Override
 	public double getDiscountPercentage() {
 		return DiscountPercentage;
 	}
+
+	@Override
 	public void setDiscountPercentage(double discountPercentage) {
-		DiscountPercentage = 100-discountPercentage;
+		this.DiscountPercentage = discountPercentage;
 	}
+
 	@Override
 	public ArrayList<User> getArray() {
 		return usersSubscribed;
 	}
 
-	public MobileEtisalat(){}
+	public Monthly(){};
+
+	public double pay() {
+		return p.pay(price); 
+	}
+
 
 	public String description() {
 		// TODO Auto-generated method stub
-		return "welcome to the services of " + this.ServiceName;
+		return "welcome to the services of " + this.name; 
 	}
 
-	@Override
-	public void setPayment(Payment payMethod) {
-		p = payMethod;
-	}
 
+
+	public void setPayment(Payment p) {
+		this.p = p;
+	}
+	
+	
 
 }

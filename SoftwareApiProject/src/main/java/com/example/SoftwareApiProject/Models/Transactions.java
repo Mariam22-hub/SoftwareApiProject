@@ -4,9 +4,10 @@ public class Transactions {
     private Services service;
     private String user;
     double amount;
+
     //if user want to refund a transaction -> refund = true
    //if admin accept refund -> refunded = true
-    //if true true -> refund accepted
+    //if true -> refund accepted
     //if true false -> refund rejected
     private boolean refund = false;
     private boolean refunded = false;

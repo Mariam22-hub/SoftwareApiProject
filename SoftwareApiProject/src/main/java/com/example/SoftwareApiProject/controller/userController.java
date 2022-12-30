@@ -28,6 +28,7 @@ public class userController {
 
     @GetMapping("/users/{username}")
     public User getUser(@PathVariable ("username") String name){
+        System.out.println("-- Your account information --");
         return service.getUser(name);
     }
 
