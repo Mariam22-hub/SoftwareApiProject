@@ -66,24 +66,25 @@ public class userRepository {
         if(PaymentMethod.equals("Wallet")){
             user.wallet.decrement(amount);
             //store transaction
-            Transactions t = new Transactions(service);
-
+            Transactions t = new Transactions(service,user.getUsername(),amount);
             user.transactionPay.add(t);
             return "Payment by wallet is successful\nyour  amount is " + user.wallet.getAmount();
         }
         if (PaymentMethod.equals("CreditCard")) {
             user.getCreditCard().decrement(amount);
-            Transactions t = new Transactions(service);
+            Transactions t = new Transactions(service,user.getUsername(),amount);
 //            Transactions t2 = new Transactions(service, user);
 //            allTransactions.add(t2);
             user.transactionPay.add(t);
+
             return "Payment by creditCard is successful\nyour amount is " + user.getCreditCard().getAmount();
         }
         if (PaymentMethod.equals("Cash")) {
-            Transactions t = new Transactions(service);
+            Transactions t = new Transactions(service,user.getUsername(),amount);
 //            Transactions t2 = new Transactions(service, user);
 //            allTransactions.add(t2);
             user.transactionPay.add(t);
+
             return "Payment by Cash is successful\nyou Paid " + service.getPrice();
         }
 

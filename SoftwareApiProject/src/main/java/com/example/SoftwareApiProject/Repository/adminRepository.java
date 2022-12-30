@@ -4,7 +4,6 @@ import com.example.SoftwareApiProject.Models.Discounts.overall;
 import com.example.SoftwareApiProject.Models.Transactions;
 import com.example.SoftwareApiProject.Models.User;
 import com.example.SoftwareApiProject.Models.Discounts.specific;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -63,7 +62,26 @@ public class adminRepository {
         }
         return "";
     }
+    public ArrayList<Transactions> userPayTrans(String userName) {
+        User user = null;
+        for (User users : usersArray) {
+            if (users.getUsername().equals(userName)) {
+
+                user = users;
+                break;
+            }
+        }
+
+        if(user != null){
+            return user.transactionPay;
+        }
+        return  null;
+    }
+
 
 
     public static specific specific= new specific();
+
+
+
 }

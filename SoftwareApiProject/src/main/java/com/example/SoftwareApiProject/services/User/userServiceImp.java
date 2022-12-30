@@ -67,6 +67,7 @@ public class userServiceImp implements userService {
         if(userRepo.loggedInUser!=null){
             userRepo.loggedInUser.wallet.increment(amount);
             userRepo.loggedInUser.creditCard.decrement(amount);
+
             return "amount: "+amount+"has been added to your wallet and your wallet's new balance is "+userRepo.loggedInUser.wallet.getAmount();
         }
         else{

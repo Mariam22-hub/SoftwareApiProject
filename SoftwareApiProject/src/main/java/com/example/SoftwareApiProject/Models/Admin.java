@@ -18,7 +18,4 @@ public class Admin {
 
     public static ArrayList<Transactions> allTransactions = new ArrayList<Transactions>();
 
-
-
-
 }

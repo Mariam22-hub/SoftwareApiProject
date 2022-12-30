@@ -13,6 +13,7 @@ public class User{
    public Wallet wallet;
    public ArrayList<Transactions> transactionPay = new ArrayList<>();
 
+
     public CreditCard creditCard;
     String serviceType = "";
     boolean signedIn = false;

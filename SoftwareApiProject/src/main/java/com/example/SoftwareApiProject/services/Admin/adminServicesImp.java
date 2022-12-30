@@ -7,13 +7,11 @@ import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Repository.adminRepository;
 import com.example.SoftwareApiProject.Repository.servicesProvidersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import static com.example.SoftwareApiProject.Repository.adminRepository.specific;
 
 import java.util.ArrayList;
 
-import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
 import static com.example.SoftwareApiProject.Repository.adminRepository.overallDiscount;
 
 @Service
@@ -39,7 +37,9 @@ public class adminServicesImp implements adminServices{
     public ArrayList<Transactions> listAllRefundReq() {
         return adminRepo.findAllRefund();
     }
-
+    public ArrayList<Transactions> userPayTrans(String userName) {
+        return adminRepo.userPayTrans(userName);
+    }
     @Override
     public String updateRefund(int transId, int refundState) {
         return adminRepo.updateUserRefund( transId, refundState);
@@ -52,6 +52,7 @@ public class adminServicesImp implements adminServices{
     s.setDiscountPercentage(percentage);
         return "Specific discount for "+ serviceName+" is added with " + percentage + "%";
     }
+
 
 
 }

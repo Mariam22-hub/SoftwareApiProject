@@ -1,6 +1,7 @@
 package com.example.SoftwareApiProject.services.Admin;
 
 import com.example.SoftwareApiProject.Models.Transactions;
+import com.example.SoftwareApiProject.Models.User;
 
 import java.util.ArrayList;
 
@@ -16,4 +17,5 @@ public interface adminServices {
     String updateRefund(int transId, int refundState);
 
     String addSpecificDiscount(double percentage, String serviceName);
+
 }

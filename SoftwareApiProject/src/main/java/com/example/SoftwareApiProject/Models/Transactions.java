@@ -3,6 +3,7 @@ package com.example.SoftwareApiProject.Models;
 public class Transactions {
     private Services service;
     private String user;
+    double amount;
     //if user want to refund a transaction -> refund = true
    //if admin accept refund -> refunded = true
     //if true true -> refund accepted
@@ -27,9 +28,10 @@ public class Transactions {
 
     }
 
-    public Transactions(Services service, String user) {
+    public Transactions(Services service, String user,double amount) {
         this.service = service;
         this.user = user;
+        this.amount = amount;
     }
 
     public boolean isRefund() {
