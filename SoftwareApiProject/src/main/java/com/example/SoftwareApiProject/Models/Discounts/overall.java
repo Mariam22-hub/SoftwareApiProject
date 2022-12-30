@@ -2,21 +2,28 @@ package com.example.SoftwareApiProject.Models.Discounts;
 
 import com.example.SoftwareApiProject.Models.Payment;
 import com.example.SoftwareApiProject.Models.Services;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @NoArgsConstructor
+//@AllArgsConstructor
 public class overall extends Discounts {
 
 //	Services service;
 //
-	double DiscountAmount = 0;
-//
+	public double DiscountAmount;
 
-//	private Payment p;
+	Payment p;
+	boolean flag;
 
-	boolean flag = false;
+	public overall(double discountAmount, Payment p, boolean flag) {
+		DiscountAmount = discountAmount;
+		this.p = p;
+		this.flag = flag;
+	}
+
 
 	public void setFlag(boolean flag) {
 		this.flag = flag;

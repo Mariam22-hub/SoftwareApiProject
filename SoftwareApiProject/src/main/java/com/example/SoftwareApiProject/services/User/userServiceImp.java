@@ -54,13 +54,15 @@ public class userServiceImp implements userService {
         service.setPayment(payMethod);
 
         if (overallDiscount.isFlag()){
-            overallDiscount.pay(service);
+            double pay = overallDiscount.pay(service);
+            user.wallet.decrement(pay);
+            return "Payment by wallet is successful\nYour wallet's amount is " + user.wallet.getAmount();
         }
         else {
             service.pay();
+            return userRepo.PayWallet(service , user);
         }
 
-        return userRepo.PayWallet(service , user);
     }
 
     @Override

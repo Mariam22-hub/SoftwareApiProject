@@ -9,9 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import static com.example.SoftwareApiProject.Repository.adminRepository.overallDiscount;
 
+@RestController
 public class adminController {
 
     @Autowired
@@ -23,8 +25,7 @@ public class adminController {
     }
 
     @PostMapping("/admin/addOverall")
-    public String addOverallDiscount(@RequestParam (value = "percentage") double percentage, @Valid @RequestBody overall overalldiscount){
-        overallDiscount = overalldiscount;
+    public String addOverallDiscount(@RequestParam (value = "percentage") double percentage){
         return adminServices.addOverallDiscount(percentage);
     }
 
