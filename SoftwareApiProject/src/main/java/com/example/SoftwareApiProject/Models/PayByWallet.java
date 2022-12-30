@@ -13,7 +13,6 @@ public class PayByWallet implements Payment {
             System.out.println("There is not enough money in your wallet.\n");
         }
         return 0;
-
     }
 
     public PayByWallet(Wallet wallet) {

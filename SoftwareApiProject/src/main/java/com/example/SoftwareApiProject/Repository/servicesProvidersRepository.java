@@ -33,7 +33,7 @@ public class servicesProvidersRepository {
 
     public boolean subscribeUser(User user, String serviceName) {
         for (Services service : serviceProviders) {
-            if (service.getName().equals(serviceName)) {
+            if (service.getName().toLowerCase().equals(serviceName.toLowerCase())) {
                 service.getArray().add(user);
                 return true;
             }

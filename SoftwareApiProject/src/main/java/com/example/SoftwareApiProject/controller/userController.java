@@ -1,6 +1,5 @@
 package com.example.SoftwareApiProject.controller;
 
-import com.example.SoftwareApiProject.Models.Discounts.overall;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import com.example.SoftwareApiProject.services.User.userService;
@@ -17,7 +16,7 @@ public class userController {
     @Autowired
     userService service;
 
-    @PostMapping("/user/registers")
+    @PostMapping("/user/register")
     public String addUser(@Valid @RequestBody User user){
         return service.addUser(user);
     }

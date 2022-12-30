@@ -1,14 +1,15 @@
 package com.example.SoftwareApiProject.services.User;
 
 
-import com.example.SoftwareApiProject.Models.Services;
-import com.example.SoftwareApiProject.Models.User;
+import com.example.SoftwareApiProject.Models.*;
 import com.example.SoftwareApiProject.Repository.userRepository;
 import com.example.SoftwareApiProject.services.serviceProviders.servicesProvidersImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+
+import static com.example.SoftwareApiProject.Repository.adminRepository.overallDiscount;
 
 @Service
 public class userServiceImp implements userService {
@@ -45,7 +46,35 @@ public class userServiceImp implements userService {
     public String pay(String username, String serviceName, String PaymentMethod) {
         User user = userRepo.getUser(username);
         Services service = servicesimp.findSer(serviceName);
-        return userRepo.pay(service , user, PaymentMethod);
+        double amount = 0;
+
+        Payment payMethod = checkPaymentType(PaymentMethod, user);
+        service.setPayment(payMethod);
+        if (overallDiscount.isFlag()){
+            amount = overallDiscount.pay(service);
+            return userRepo.pay(service , user, PaymentMethod, amount);
+        }
+        amount = service.pay();
+
+        return userRepo.pay(service , user, PaymentMethod, amount);
+    }
+
+    public Payment checkPaymentType(String PaymentMethod, User user){
+        Payment payMethod=null;
+
+        if(PaymentMethod.equals("Wallet")){
+            payMethod = new PayByWallet(user.getWallet());
+        }
+        if(PaymentMethod.equals("CreditCard"))
+        {
+            payMethod = new PayByCard(user.getCreditCard());
+        }
+        if(PaymentMethod.equals("Cash"))
+        {
+            payMethod = new PayByCash(user.getUsername());
+        }
+
+        return payMethod;
     }
 
     @Override
