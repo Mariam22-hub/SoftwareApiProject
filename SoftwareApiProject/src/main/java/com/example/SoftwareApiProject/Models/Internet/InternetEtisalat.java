@@ -21,7 +21,7 @@ public class InternetEtisalat implements Services {
 		name = "InternetEtisalat";;
 		price = 190;
 	}
-	public double DiscountPercentage =100;
+	public double DiscountPercentage = 100;
 	public double getDiscountPercentage() {
 		return DiscountPercentage;
 	}
