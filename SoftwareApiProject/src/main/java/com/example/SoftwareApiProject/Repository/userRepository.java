@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
+import static com.example.SoftwareApiProject.Repository.adminRepository.transactionPays;
+import static com.example.SoftwareApiProject.Repository.adminRepository.transactionPays;
 
 @Service
 public class userRepository {
@@ -67,7 +69,8 @@ public class userRepository {
             user.wallet.decrement(amount);
             //store transaction
             Transactions t = new Transactions(service,user.getUsername(),amount);
-            user.transactionPay.add(t);
+            transactionPays.add(t);
+            //user.transactionPay.add(t);
             return "Payment by wallet is successful\nyour  amount is " + user.wallet.getAmount();
         }
         if (PaymentMethod.equals("CreditCard")) {
@@ -75,7 +78,8 @@ public class userRepository {
             Transactions t = new Transactions(service,user.getUsername(),amount);
 //            Transactions t2 = new Transactions(service, user);
 //            allTransactions.add(t2);
-            user.transactionPay.add(t);
+            //user.transactionPay.add(t);
+            transactionPays.add(t);
 
             return "Payment by creditCard is successful\nyour amount is " + user.getCreditCard().getAmount();
         }
@@ -83,7 +87,8 @@ public class userRepository {
             Transactions t = new Transactions(service,user.getUsername(),amount);
 //            Transactions t2 = new Transactions(service, user);
 //            allTransactions.add(t2);
-            user.transactionPay.add(t);
+            //user.transactionPay.add(t);
+            transactionPays.add(t);
 
             return "Payment by Cash is successful\nyou Paid " + service.getPrice();
         }
