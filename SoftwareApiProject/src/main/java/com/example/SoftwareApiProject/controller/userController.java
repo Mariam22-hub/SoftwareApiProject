@@ -54,5 +54,11 @@ public class userController {
     {
         return ResponseEntity.ok(service.checkRefund(username,serviceName));
     }
+    @PutMapping("/users/addFunds")
+    public ResponseEntity<String> addFunds(@RequestParam(value = "amount") double amount)
+    {
+
+        return ResponseEntity.ok(service.addFunds(amount));
+    }
 
 }

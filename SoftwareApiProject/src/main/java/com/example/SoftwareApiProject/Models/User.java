@@ -13,7 +13,7 @@ public class User{
    public Wallet wallet;
    public ArrayList<Transactions> transactionPay = new ArrayList<>();
 
-    CreditCard creditCard;
+    public CreditCard creditCard;
     String serviceType = "";
     boolean signedIn = false;
 
@@ -75,13 +75,17 @@ public class User{
 
     public User() {
     }
-    public User(String username, String password, String refundState, String email, Wallet wallet, CreditCard creditCard) {
+    public User(String username, String password, String email, Wallet wallet, CreditCard creditCard) {
         this.username = username;
         this.password = password;
-        this.refundState = refundState;
         this.email = email;
         this.wallet = wallet;
         this.creditCard = creditCard;
+    }
+    public User (String username,String password){
+        this.username= username;
+        this.password = password;
+        this.wallet = new Wallet(50);
     }
 
 

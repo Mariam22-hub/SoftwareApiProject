@@ -24,5 +24,7 @@ public interface userService {
     public ArrayList<Services> search(String serviceName);
 
     String pay(String username, String serviceName, String paymentMethod);
+
+    String addFunds(double amount);
 }
 

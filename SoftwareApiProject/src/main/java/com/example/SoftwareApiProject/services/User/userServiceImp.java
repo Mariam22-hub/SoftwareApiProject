@@ -62,6 +62,18 @@ public class userServiceImp implements userService {
         return userRepo.pay(service , user, PaymentMethod, amount);
     }
 
+    @Override
+    public String addFunds(double amount) {
+        if(userRepo.loggedInUser!=null){
+            userRepo.loggedInUser.wallet.increment(amount);
+            userRepo.loggedInUser.creditCard.decrement(amount);
+            return "amount: "+amount+"has been added to your wallet and your wallet's new balance is "+userRepo.loggedInUser.wallet.getAmount();
+        }
+        else{
+            return "please sign in first";
+        }
+    }
+
     public Payment checkPaymentType(String PaymentMethod, User user){
         Payment payMethod=null;
 

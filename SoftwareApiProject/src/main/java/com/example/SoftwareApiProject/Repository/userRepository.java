@@ -10,6 +10,7 @@ import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
 
 @Service
 public class userRepository {
+    static public User loggedInUser;
 
     @Autowired
     public static ArrayList<User> usersArray = new ArrayList<User>();
@@ -17,11 +18,12 @@ public class userRepository {
     public String addUser(User incomingUser) {
         for (User users : usersArray) {
             if (users.getUsername().equals(incomingUser.getUsername()) || users.getEmail().equals(incomingUser.getEmail())) {
-                users.setSignedIn(true);
                 return "user already added";
             }
         }
         usersArray.add(incomingUser);
+        incomingUser.setSignedIn(true);
+        loggedInUser = incomingUser;
         return "user added successfully";
     }
 
@@ -91,8 +93,9 @@ public class userRepository {
 
     public String signIn(User regesteredUser) {
         for (User users : usersArray) {
-            if (users.getUsername().equals(regesteredUser.getUsername()) && users.getEmail().equals(regesteredUser.getEmail())) {
+            if (users.getUsername().equals(regesteredUser.getUsername()) && users.getEmail().equals(regesteredUser.getEmail())&&users.getPassword().equals(regesteredUser.getPassword())) {
                 users.setSignedIn(true);
+                loggedInUser = regesteredUser;
                 return "you signed in successfully";
             }
         }
