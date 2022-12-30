@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
-import static com.example.SoftwareApiProject.Repository.adminRepository.overallDiscount;
+import static com.example.SoftwareApiProject.Repository.adminRepository.*;
 
 @Service
 public class userServiceImp implements userService {
@@ -65,13 +65,10 @@ public class userServiceImp implements userService {
     @Override
     public String addFunds(double amount) {
         if(userRepo.loggedInUser!=null){
-
             userRepo.loggedInUser.wallet.increment(amount);
             userRepo.loggedInUser.creditCard.decrement(amount);
-
             AddWalletTransactions t = new AddWalletTransactions(userRepo.loggedInUser.getUsername(),amount);
-            userRepo.loggedInUser.WalletTransactions.add(t);
-
+            walletTransactions.add(t);
             return "amount: "+amount+"has been added to your wallet and your wallet's new balance is "+userRepo.loggedInUser.wallet.getAmount();
         }
         else{

@@ -17,6 +17,8 @@ import static com.example.SoftwareApiProject.Repository.userRepository.usersArra
 @Service
 public class adminRepository {
     ArrayList<Objects> history = new ArrayList<>();
+    public static ArrayList<Transactions> transactionPays = new ArrayList<>();
+    public static ArrayList<AddWalletTransactions> walletTransactions = new ArrayList<>();
     public static overall overallDiscount = new overall();
     public static specific specific= new specific();
 
@@ -65,33 +67,30 @@ public class adminRepository {
         return "";
     }
     public ArrayList<Transactions> userPayTrans(String userName) {
-        User user = null;
-        for (User users : usersArray) {
-            if (users.getUsername().equals(userName)) {
-
-                user = users;
-                break;
+        ArrayList<Transactions>userTrans = new ArrayList<>();
+        for (int i=0;i<transactionPays.size();i++) {
+            if (transactionPays.get(i).getUser().equals(userName)) {
+                userTrans.add(transactionPays.get(i));
             }
         }
 
-        if(user != null){
-            return user.transactionPay;
+        if(userTrans!= null){
+            return userTrans;
         }
         return  null;
     }
 
     public ArrayList<AddWalletTransactions> userWalletTrans(String userName) {
+        ArrayList<AddWalletTransactions> userWalletTrans = new ArrayList<>();
         User user = null;
-        for (User users : usersArray) {
-            if (users.getUsername().equals(userName)) {
-
-                user = users;
-                break;
+        for (int i=0;i<walletTransactions.size();i++) {
+            if (walletTransactions.get(i).username.equals(userName)) {
+                userWalletTrans.add(walletTransactions.get(i));
             }
         }
 
-        if(user != null){
-            return user.WalletTransactions;
+        if(userWalletTrans!= null){
+            return userWalletTrans;
         }
         return  null;
     }
