@@ -4,6 +4,8 @@ import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import jakarta.validation.Valid;
 
+import java.util.ArrayList;
+
 public interface userService {
     public String addUser(@Valid User user);
 
@@ -15,5 +17,7 @@ public interface userService {
 
     String signIn(User user);
 
+
+    public ArrayList<Services> search(String serviceName);
 }
 

@@ -10,7 +10,6 @@ import com.example.SoftwareApiProject.Models.Mobile.MobileVodafone;
 import com.example.SoftwareApiProject.Models.Mobile.MobileWE;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -51,4 +50,13 @@ public class servicesProvidersRepository {
         return null;
     }
 
+    public ArrayList<Services> searchProviders(String serviceName) {
+        ArrayList<Services> services = new ArrayList<>();
+        for (Services s : serviceProviders){
+            if (s.getName().toLowerCase().contains(serviceName.toLowerCase())){
+                services.add(s);
+            }
+        }
+        return services;
+    }
 }

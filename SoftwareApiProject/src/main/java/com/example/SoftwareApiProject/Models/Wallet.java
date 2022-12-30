@@ -1,16 +1,15 @@
 package com.example.SoftwareApiProject.Models;
 
-public class Wallet{
+import lombok.NoArgsConstructor;
 
-//    IUser user;
+@NoArgsConstructor
+public class Wallet{
 
     public double amount;
     public Wallet(double amount) {
         this.amount = amount;
     }
-    public Wallet(){
-        amount =10000;
-    }
+
     public void setAmount(double am){
         amount = am;
     }
@@ -21,10 +20,9 @@ public class Wallet{
 
     public void decrement(double am){
         amount -= am;
-        //transactions.add(am);
     }
 
-    public void incriment(double am){
+    public void increment(double am){
         amount += am;
         this.setAmount(amount);
     }
