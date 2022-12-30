@@ -1,9 +1,6 @@
 package com.example.SoftwareApiProject.Repository;
 
-import com.example.SoftwareApiProject.Models.PayByWallet;
-import com.example.SoftwareApiProject.Models.Payment;
-import com.example.SoftwareApiProject.Models.Services;
-import com.example.SoftwareApiProject.Models.User;
+import com.example.SoftwareApiProject.Models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,12 +41,38 @@ public class userRepository {
         return null;
     }
 
-    public String PayWallet(Services service, User user) {
-        Payment payMethod = (Payment) new PayByWallet(user.getWallet());
+    public String pay(Services service, User user ,String PaymentMethod) {
+        Payment payMethod=null;
+        if(PaymentMethod.equals("Wallet")){
+        payMethod = (Payment) new PayByWallet(user.getWallet());
+        }
+        if(PaymentMethod.equals("CreditCard"))
+        {
+        payMethod = (Payment) new PayByCard(user.getCreditCard());
+        }
+        if(PaymentMethod.equals("Cash"))
+        {
+          payMethod = (Payment) new PayByCash(user.getUsername());
+
+        }
         service.setPayment(payMethod);
         service.pay();
-        user.wallet.decriment(service.getPrice());
-        return "Payment by wallet done your amount is" + user.wallet.getAmount();
+
+        if(PaymentMethod.equals("Wallet")){
+            user.wallet.decrement(service.getPrice());
+            return "Payment by wallet is done your  amount is " + user.wallet.getAmount();
+        }
+        if(PaymentMethod.equals("CreditCard"))
+        {
+            user.creditCard.decrement(service.getPrice());
+            return "Payment by creditCard is done your amount is " + user.creditCard.getAmount();
+        }
+        if(PaymentMethod.equals("Cash"))
+        {
+            return "Payment by Cash is done you Paid " + service.getPrice();
+        }
+
+        return "";
     }
 
 

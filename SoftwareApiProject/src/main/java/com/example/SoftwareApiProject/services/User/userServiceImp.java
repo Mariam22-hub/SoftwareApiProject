@@ -40,10 +40,10 @@ public class userServiceImp implements userService {
     }
 
 
-    public String PayByWallet(String username, String serviceName) {
+    public String pay(String username, String serviceName, String PaymentMethod) {
         User user = userRepo.getUser(username);
         Services service = servicesimp.findSer(serviceName);
-        return userRepo.PayWallet(service , user);
+        return userRepo.pay(service , user, PaymentMethod);
     }
 
     @Override

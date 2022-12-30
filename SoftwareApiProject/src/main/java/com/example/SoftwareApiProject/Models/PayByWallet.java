@@ -1,6 +1,6 @@
 package com.example.SoftwareApiProject.Models;
 
-public class PayByWallet {
+public class PayByWallet implements Payment {
     Wallet wallet;
 
     public double pay(double amount) {
@@ -21,6 +21,6 @@ public class PayByWallet {
     }
 
     public void UpdateAmount(double amount) {
-        wallet.decriment(amount);
+        wallet.decrement(amount);
     }
 }

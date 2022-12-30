@@ -19,7 +19,7 @@ public class Wallet{
 		return amount;
 	}
 
-    public void decriment(double am){
+    public void decrement(double am){
         amount -= am;
         //transactions.add(am);
     }
