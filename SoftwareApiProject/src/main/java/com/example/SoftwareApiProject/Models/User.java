@@ -8,8 +8,8 @@ public class User{
     String password;
     String refundState;
     String email;
-    public Wallet wallet;
-    CreditCard creditCard;
+   public Wallet wallet;
+   public CreditCard creditCard;
     String serviceType = "";
     boolean signedIn = false;
 

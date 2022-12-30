@@ -13,7 +13,7 @@ public interface userService {
 
     String subscribe(String username, String serviceName);
 
-    String PayByWallet(String username, String serviceName);
+    String pay(String username, String serviceName,String PaymentMethod);
 
     String signIn(User user);
 

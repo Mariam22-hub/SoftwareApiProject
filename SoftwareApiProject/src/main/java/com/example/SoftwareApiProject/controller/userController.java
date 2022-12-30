@@ -37,9 +37,9 @@ public class userController {
         return ResponseEntity.ok(service.subscribe(username, serviceName));
     }
     @GetMapping("/users/pay")
-    public ResponseEntity<String> PayWallet(@RequestParam(value = "username") String username, @RequestParam(value = "serviceName") String serviceName)
+    public ResponseEntity<String> pay(@RequestParam(value = "username") String username, @RequestParam(value = "serviceName") String serviceName, @RequestParam(value ="PaymentMethod") String PaymentMethod)
     {
-        return ResponseEntity.ok(service.PayByWallet(username,serviceName));
+        return ResponseEntity.ok(service.PayByWallet(username,serviceName,PaymentMethod));
     }
     @GetMapping ("/users/search")
     public ResponseEntity<ArrayList<Services>> search (@RequestParam(value = "serviceName") String serviceName){

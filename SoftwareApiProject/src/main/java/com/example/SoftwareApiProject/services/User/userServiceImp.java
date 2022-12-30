@@ -49,20 +49,7 @@ public class userServiceImp implements userService {
     public String PayByWallet(String username, String serviceName) {
         User user = userRepo.getUser(username);
         Services service = servicesimp.findSer(serviceName);
-
-        Payment payMethod = new PayByWallet(user.getWallet());
-        service.setPayment(payMethod);
-
-        if (overallDiscount.isFlag()){
-            double pay = overallDiscount.pay(service);
-            user.wallet.decrement(pay);
-            return "Payment by wallet is successful\nYour wallet's amount is " + user.wallet.getAmount();
-        }
-        else {
-            service.pay();
-            return userRepo.PayWallet(service , user);
-        }
-
+        return userRepo.pay(service , user, PaymentMethod);
     }
 
     @Override
