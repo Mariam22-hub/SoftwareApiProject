@@ -15,7 +15,6 @@ public class User{
    public ArrayList<AddWalletTransactions> WalletTransactions = new ArrayList<>();
 
     public CreditCard creditCard;
-    String serviceType = "";
     boolean signedIn = false;
 
     public boolean getisSignedIn() {

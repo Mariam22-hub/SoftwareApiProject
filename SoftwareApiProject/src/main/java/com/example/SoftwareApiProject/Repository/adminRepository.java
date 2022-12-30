@@ -18,6 +18,7 @@ import static com.example.SoftwareApiProject.Repository.userRepository.usersArra
 public class adminRepository {
     ArrayList<Objects> history = new ArrayList<>();
     public static overall overallDiscount = new overall();
+    public static specific specific= new specific();
 
     public ArrayList<Transactions> findAllRefund() {
         if(allTransactions.size() > 0){
@@ -78,11 +79,6 @@ public class adminRepository {
         }
         return  null;
     }
-
-
-
-    public static specific specific= new specific();
-
 
     public ArrayList<AddWalletTransactions> userWalletTrans(String userName) {
         User user = null;

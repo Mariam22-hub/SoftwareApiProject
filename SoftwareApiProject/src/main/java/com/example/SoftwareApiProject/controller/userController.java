@@ -57,7 +57,6 @@ public class userController {
     @PutMapping("/users/addFunds")
     public ResponseEntity<String> addFunds(@RequestParam(value = "amount") double amount)
     {
-
         return ResponseEntity.ok(service.addFunds(amount));
     }
 
