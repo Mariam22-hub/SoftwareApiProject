@@ -1,6 +1,5 @@
 package com.example.SoftwareApiProject.controller;
 
-import com.example.SoftwareApiProject.Models.Discounts.overall;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import com.example.SoftwareApiProject.services.User.userService;
@@ -39,7 +38,7 @@ public class userController {
     @GetMapping("/users/pay")
     public ResponseEntity<String> pay(@RequestParam(value = "username") String username, @RequestParam(value = "serviceName") String serviceName, @RequestParam(value ="PaymentMethod") String PaymentMethod)
     {
-        return ResponseEntity.ok(service.PayByWallet(username,serviceName,PaymentMethod));
+        return ResponseEntity.ok(service.pay(username,serviceName,PaymentMethod));
     }
     @GetMapping ("/users/search")
     public ResponseEntity<ArrayList<Services>> search (@RequestParam(value = "serviceName") String serviceName){

@@ -16,7 +16,7 @@ public class overall extends Discounts {
 	public double DiscountAmount;
 
 	Payment p;
-	boolean flag;
+	boolean flag = false;
 
 	public overall(double discountAmount, Payment p, boolean flag) {
 		DiscountAmount = discountAmount;

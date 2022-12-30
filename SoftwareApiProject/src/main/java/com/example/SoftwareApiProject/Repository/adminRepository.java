@@ -10,5 +10,5 @@ import java.util.Objects;
 @Service
 public class adminRepository {
     ArrayList<Objects> history = new ArrayList<>();
-    public static overall overallDiscount;
+    public static overall overallDiscount = new overall();
 }
