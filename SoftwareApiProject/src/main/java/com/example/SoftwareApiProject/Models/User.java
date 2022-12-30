@@ -12,7 +12,7 @@ public class User{
     String email;
    public Wallet wallet;
    public ArrayList<Transactions> transactionPay = new ArrayList<>();
-   public ArrayList<AddWalletTransactions> WalletTransactions = new ArrayList<>();
+
 
     public CreditCard creditCard;
     String serviceType = "";

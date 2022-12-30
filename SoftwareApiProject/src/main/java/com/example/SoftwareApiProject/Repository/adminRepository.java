@@ -18,6 +18,7 @@ import static com.example.SoftwareApiProject.Repository.userRepository.usersArra
 public class adminRepository {
     ArrayList<Objects> history = new ArrayList<>();
     public static ArrayList<Transactions> transactionPays = new ArrayList<>();
+    public static ArrayList<AddWalletTransactions> walletTransactions = new ArrayList<>();
     public static overall overallDiscount = new overall();
 
     public ArrayList<Transactions> findAllRefund() {
@@ -84,17 +85,16 @@ public class adminRepository {
 
 
     public ArrayList<AddWalletTransactions> userWalletTrans(String userName) {
+        ArrayList<AddWalletTransactions> userWalletTrans = new ArrayList<>();
         User user = null;
-        for (User users : usersArray) {
-            if (users.getUsername().equals(userName)) {
-
-                user = users;
-                break;
+        for (int i=0;i<walletTransactions.size();i++) {
+            if (walletTransactions.get(i).username.equals(userName)) {
+                userWalletTrans.add(walletTransactions.get(i));
             }
         }
 
-        if(user != null){
-            return user.WalletTransactions;
+        if(userWalletTrans!= null){
+            return userWalletTrans;
         }
         return  null;
     }
