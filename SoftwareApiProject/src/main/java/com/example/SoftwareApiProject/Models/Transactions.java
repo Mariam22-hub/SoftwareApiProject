@@ -1,10 +1,17 @@
 package com.example.SoftwareApiProject.Models;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class Transactions {
+    private long id = 0;
     private Services service;
     private String user;
-    double amount;
-    private long id = 0;
+
+    private double amount;
     //if user want to refund a transaction -> refund = true
     //if admin accept refund -> refunded = true
     //if true true -> refund accepted
@@ -12,6 +19,12 @@ public class Transactions {
     private boolean refund = false;
     private boolean refunded = false;
     private boolean checked = false;
+
+    public Transactions(Services service, String username, double amount) {
+        this.service = service;
+        this.user = username;
+        this.amount = amount;
+    }
 
     public boolean isChecked() {
         return checked;
@@ -29,22 +42,10 @@ public class Transactions {
 
     }
 
-    public Transactions(Services service, String user,double amount) {
+    public Transactions(Services service, String user) {
         this.service = service;
         this.user = user;
-        this.amount = amount;
     }
-    public void setId(long id) {
-        this.id = id;
-    }
-    public  long getID(){
-        return this.id;
-    }
-
-    public void incrementId(){
-        this.id++;
-    }
-
 
     public boolean isRefund() {
         return refund;
@@ -76,5 +77,17 @@ public class Transactions {
 
     public void setRefunded(boolean refunded) {
         this.refunded = refunded;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void incrementId(){
+        this.id++;
     }
 }

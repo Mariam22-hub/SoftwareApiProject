@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
 import static com.example.SoftwareApiProject.Repository.adminRepository.*;
+import static com.example.SoftwareApiProject.Repository.userRepository.loggedInUser;
 
 @Service
 public class userServiceImp implements userService {
@@ -34,6 +35,10 @@ public class userServiceImp implements userService {
     public String subscribe(String username, String serviceName) {
         User user = userRepo.subscribe(username);
         if (user != null) {
+
+            if (!user.getisSignedIn()){
+                return "please sign in first";
+            }
             boolean flag = servicesimp.subscribeUser(serviceName, user);
             if (flag) {
                 return "user subscribed successfully to " + serviceName;
@@ -44,6 +49,44 @@ public class userServiceImp implements userService {
         return "user not found";
     }
 
+
+//    public String pay(String username, String serviceName, String PaymentMethod) {
+//
+//        User user = userRepo.getUser(username);
+//
+//        if (!user.getisSignedIn()){
+//            return "please sign in first";
+//        }
+//
+//        Services service = servicesimp.findSer(serviceName);
+//
+//        double amount = 0;
+//        boolean flag = false;
+//
+//        for (User users : service.getArray()){
+//            if (users == user){
+//                flag = true;
+//                break;
+//            }
+//        }
+//
+//        if (!flag){
+//            return "user is not subscribed to this service";
+//        }
+//
+//        Payment payMethod = checkPaymentType(PaymentMethod, user);
+//        service.setPayment(payMethod);
+//
+//        if (overallDiscount.isFlag()){
+//            amount = overallDiscount.pay(service);
+//            amount = specific.pay(service,amount);
+//            return userRepo.pay(service , user, PaymentMethod, amount);
+//        }
+//
+//        amount = service.pay();
+//        amount = specific.pay(service,amount);
+//        return userRepo.pay(service , user, PaymentMethod, amount);
+//    }
 
     public String pay(String username, String serviceName, String PaymentMethod) {
         User user = userRepo.getUser(username);
@@ -60,20 +103,6 @@ public class userServiceImp implements userService {
         amount = service.pay();
         amount = specific.pay(service,amount);
         return userRepo.pay(service , user, PaymentMethod, amount);
-    }
-
-    @Override
-    public String addFunds(double amount) {
-        if(userRepo.loggedInUser!=null){
-            userRepo.loggedInUser.wallet.increment(amount);
-            userRepo.loggedInUser.creditCard.decrement(amount);
-            AddWalletTransactions t = new AddWalletTransactions(userRepo.loggedInUser.getUsername(),amount);
-            walletTransactions.add(t);
-            return "amount: "+amount+"has been added to your wallet and your wallet's new balance is "+userRepo.loggedInUser.wallet.getAmount();
-        }
-        else{
-            return "please sign in first";
-        }
     }
 
     public Payment checkPaymentType(String PaymentMethod, User user){
@@ -95,8 +124,31 @@ public class userServiceImp implements userService {
     }
 
     @Override
-    public String signIn(User regesteredUser) {
-        return userRepo.signIn(regesteredUser);
+    public String addFunds(double amount, String username) {
+        User user = userRepo.getUser(username);
+
+//        if (user.getisSignedIn()){
+//            loggedInUser = user;
+//        }
+
+        if(user != null){
+
+            user.wallet.increment(amount);
+            user.creditCard.decrement(amount);
+
+            AddWalletTransactions t = new AddWalletTransactions(user.getUsername(),amount);
+            walletTransactions.add(t);
+
+            return "amount: " + amount +" has been added to your wallet\nYour wallet's new balance is "+ user.wallet.getAmount();
+        }
+
+        return "please sign in first";
+
+    }
+
+    @Override
+    public String signIn(String username, String password, String email) {
+        return userRepo.signIn(username, password, email);
     }
 
     @Override
@@ -148,10 +200,21 @@ public class userServiceImp implements userService {
             }
 
             else if(!(user.transactionPay.get(i).isRefund()) && !(user.transactionPay.get(i).isRefunded()) && user.transactionPay.get(i).isChecked()
+                    && service.getName().equals(user.transactionPay.get(i).getService().getName())) {
+                user.transactionPay.remove(user.transactionPay.get(i));
+                return "your refund request rejected";
+            }
+            else if((user.transactionPay.get(i).isRefund())&& !(user.transactionPay.get(i).isRefunded()) && !(user.transactionPay.get(i).isChecked())
                     && service.getName().equals(user.transactionPay.get(i).getService().getName()))
 
-                return "your refund request rejected";
+                return "you haven't got response yet";
         }
-        return "you haven't got response yet";
+
+        return "you have no requests";
+    }
+
+    @Override
+    public String logOut(String name) {
+        return userRepo.logOut(name);
     }
 }

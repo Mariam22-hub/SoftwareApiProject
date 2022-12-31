@@ -1,13 +1,13 @@
 package com.example.SoftwareApiProject.Repository;
 
-import com.example.SoftwareApiProject.Models.*;
+import com.example.SoftwareApiProject.Models.Services;
+import com.example.SoftwareApiProject.Models.Transactions;
+import com.example.SoftwareApiProject.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
-import static com.example.SoftwareApiProject.Repository.adminRepository.transactionPays;
 import static com.example.SoftwareApiProject.Repository.adminRepository.transactionPays;
 
 @Service
@@ -19,7 +19,7 @@ public class userRepository {
 
     public String addUser(User incomingUser) {
         for (User users : usersArray) {
-            if (users.getUsername().equals(incomingUser.getUsername()) || users.getEmail().equals(incomingUser.getEmail())) {
+            if (users.getUsername().toLowerCase().equals(incomingUser.getUsername().toLowerCase()) || users.getEmail().toLowerCase().equals(incomingUser.getEmail().toLowerCase())) {
                 return "user already added";
             }
         }
@@ -31,7 +31,7 @@ public class userRepository {
 
     public User getUser(String name) {
         for (User users : usersArray) {
-            if (users.getUsername().equals(name)) {
+            if (users.getUsername().toLowerCase().equals(name.toLowerCase())) {
                 return users;
             }
         }
@@ -47,37 +47,21 @@ public class userRepository {
         return null;
     }
 
-    public String pay(Services service, User user , String PaymentMethod, double amount) {
-//        Payment payMethod=null;
-//
-//        if(PaymentMethod.equals("Wallet")){
-//        payMethod = new PayByWallet(user.getWallet());
-//        }
-//        if(PaymentMethod.equals("CreditCard"))
-//        {
-//        payMethod = new PayByCard(user.getCreditCard());
-//        }
-//        if(PaymentMethod.equals("Cash"))
-//        {
-//          payMethod = new PayByCash(user.getUsername());
-//
-//        }
-//        service.setPayment(payMethod);
-//        service.pay();
+    public String pay (Services service, User user , String PaymentMethod, double amount) {
 
         if(PaymentMethod.equals("Wallet")){
             user.wallet.decrement(amount);
+
             //store transaction
             Transactions t = new Transactions(service,user.getUsername(),amount);
-            transactionPays.add(t);
             user.transactionPay.add(t);
+            transactionPays.add(t);
+
             return "Payment by wallet is successful\nyour  amount is " + user.wallet.getAmount();
         }
         if (PaymentMethod.equals("CreditCard")) {
             user.getCreditCard().decrement(amount);
             Transactions t = new Transactions(service,user.getUsername(),amount);
-//            Transactions t2 = new Transactions(service, user);
-//            allTransactions.add(t2);
             user.transactionPay.add(t);
             transactionPays.add(t);
 
@@ -85,8 +69,6 @@ public class userRepository {
         }
         if (PaymentMethod.equals("Cash")) {
             Transactions t = new Transactions(service,user.getUsername(),amount);
-//            Transactions t2 = new Transactions(service, user);
-//            allTransactions.add(t2);
             user.transactionPay.add(t);
             transactionPays.add(t);
 
@@ -97,14 +79,22 @@ public class userRepository {
     }
 
 
-    public String signIn(User regesteredUser) {
+    public String signIn(String username, String password, String email) {
+
         for (User users : usersArray) {
-            if (users.getUsername().equals(regesteredUser.getUsername()) && users.getEmail().equals(regesteredUser.getEmail())&&users.getPassword().equals(regesteredUser.getPassword())) {
+
+            if (users.getUsername().toLowerCase().equals(username.toLowerCase()) && users.getEmail().toLowerCase().equals(email.toLowerCase())&&users.getPassword().toLowerCase().equals(password.toLowerCase())) {
                 users.setSignedIn(true);
-                loggedInUser = regesteredUser;
-                return "you signed in successfully";
+                loggedInUser = users;
+                return "You have signed";
             }
         }
         return ("Invalid User Information");
+    }
+
+    public String logOut(String name) {
+        User user = getUser(name);
+        user.setSignedIn(false);
+        return "You have logged out\nPlease login to use our services";
     }
 }

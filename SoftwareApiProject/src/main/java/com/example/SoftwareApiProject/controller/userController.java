@@ -16,18 +16,19 @@ public class userController {
     @Autowired
     userService service;
 
-    @PostMapping("/user/register")
+    @PostMapping("/users/register")
     public String addUser(@Valid @RequestBody User user){
         return service.addUser(user);
     }
 
-    @PostMapping("/user/login")
-    public String signIn(@Valid @RequestBody User user){
-        return service.signIn(user);
+    @PostMapping("/users/login/{username}/{password}/{email}")
+    public String signIn(@PathVariable("username") String username,@PathVariable("password") String password, @PathVariable ("email") String email){
+        return service.signIn(username, password, email);
     }
 
     @GetMapping("/users/{username}")
     public User getUser(@PathVariable ("username") String name){
+        System.out.println("-- Your account information --");
         return service.getUser(name);
     }
 
@@ -54,11 +55,15 @@ public class userController {
     {
         return ResponseEntity.ok(service.checkRefund(username,serviceName));
     }
-    @PutMapping("/users/addFunds")
-    public ResponseEntity<String> addFunds(@RequestParam(value = "amount") double amount)
+    @GetMapping("/users/addFunds")
+    public ResponseEntity<String> addFunds(@RequestParam(value = "amount") double amount, @RequestParam(value = "username") String username)
     {
+        return ResponseEntity.ok(service.addFunds(amount, username));
+    }
 
-        return ResponseEntity.ok(service.addFunds(amount));
+    @PostMapping("/users/logOut/{username}")
+    public String logOut(@Valid @PathVariable ("username") String name){
+        return service.logOut(name);
     }
 
 }
