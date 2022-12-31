@@ -1,7 +1,9 @@
+
 package com.example.SoftwareApiProject.services.Admin;
 
 import com.example.SoftwareApiProject.Models.AddWalletTransactions;
 import com.example.SoftwareApiProject.Models.Discounts.overall;
+import com.example.SoftwareApiProject.Models.NewService;
 import com.example.SoftwareApiProject.Models.Transactions;
 import com.example.SoftwareApiProject.Models.Discounts.specific;
 import com.example.SoftwareApiProject.Models.Services;
@@ -16,15 +18,16 @@ import java.util.ArrayList;
 import static com.example.SoftwareApiProject.Repository.adminRepository.overallDiscount;
 
 @Service
-public class adminServicesImp implements adminServices{
+public class adminServicesImp implements adminServices {
 
     @Autowired
     servicesProvidersRepository servicesRepo;
     @Autowired
     adminRepository adminRepo;
+
     @Override
-    public String addProvider(){
-        return null;
+    public String addProvider(Services service) {
+        return adminRepo.addProvider(service);
     }
 
     @Override
@@ -38,27 +41,33 @@ public class adminServicesImp implements adminServices{
     public ArrayList<Transactions> listAllRefundReq() {
         return adminRepo.findAllRefund();
     }
+
     public ArrayList<Transactions> userPayTrans(String userName) {
         return adminRepo.userPayTrans(userName);
     }
+
     @Override
     public String updateRefund(int transId, int refundState) {
-        return adminRepo.updateUserRefund( transId, refundState);
+        return adminRepo.updateUserRefund(transId, refundState);
     }
 
     @Override
     public String addSpecificDiscount(double percentage, String serviceName) {
         specific = new specific(percentage);
-        Services s= servicesRepo.findSer(serviceName);
+        Services s = servicesRepo.findSer(serviceName);
         s.setDiscountPercentage(percentage);
-        return "Specific discount for "+ serviceName+" is added with " + percentage + "%";
+        return "Specific discount for " + serviceName + " is added with " + percentage + "%";
     }
 
 
     public ArrayList<AddWalletTransactions> userWalletTrans(String userName) {
         return adminRepo.userWalletTrans(userName);
     }
+
     public ArrayList<Transactions> listUserRefundReq(String userName) {
         return adminRepo.listUserRefundReq(userName);
     }
 }
+
+
+

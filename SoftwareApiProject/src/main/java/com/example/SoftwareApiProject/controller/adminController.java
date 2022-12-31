@@ -1,9 +1,10 @@
 package com.example.SoftwareApiProject.controller;
 
 import com.example.SoftwareApiProject.Models.AddWalletTransactions;
-import com.example.SoftwareApiProject.Models.Services;
+import com.example.SoftwareApiProject.Models.NewService;
 import com.example.SoftwareApiProject.Models.Transactions;
 import com.example.SoftwareApiProject.services.Admin.adminServicesImp;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +18,15 @@ public class adminController {
     adminServicesImp adminServices;
 
     @PostMapping("/admin/addService")
-    public ResponseEntity<String> addProviders(Services service){
-        return ResponseEntity.ok(adminServices.addProvider());
+    public ResponseEntity<String> addProviders(@Valid @RequestBody NewService service){
+        return ResponseEntity.ok(adminServices.addProvider(service));
     }
 
     @PostMapping("/admin/addOverall")
     public String addOverallDiscount(@RequestParam (value = "percentage") double percentage){
         return adminServices.addOverallDiscount(percentage);
     }
-    @PostMapping("/admin/specific")
+    @PostMapping("/admin/addSpecific")
     public String addSpecificDiscount(@RequestParam(value = "percentage") double percentage, @RequestParam(value = "serviceName") String serviceName){
         return adminServices.addSpecificDiscount(percentage,serviceName);
     }
@@ -35,7 +36,6 @@ public class adminController {
         return adminServices.listAllRefundReq();
 
     }
-
     @GetMapping("/admin/setRefund")
     public ResponseEntity<String> handelRefunds(@RequestParam ("transId") int transId,@RequestParam ("refundState") int refundState){
         return ResponseEntity.ok(adminServices.updateRefund( transId,  refundState));
@@ -53,7 +53,7 @@ public class adminController {
     @GetMapping("/admin/listUserRefundReq")
     public ArrayList<Transactions> listUserRefundReq(@RequestParam(value = "userName") String userName){
         return adminServices.listUserRefundReq(userName);
-
     }
 
 }
+
