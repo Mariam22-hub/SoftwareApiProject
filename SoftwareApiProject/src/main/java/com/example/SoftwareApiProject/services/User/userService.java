@@ -26,5 +26,6 @@ public interface userService {
     String addFunds(double amount, String username);
 
     String logOut(String name);
+
 }
 

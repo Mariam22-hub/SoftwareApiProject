@@ -8,7 +8,7 @@ import java.util.Objects;
 public interface adminServices {
 //    public String addProvider(NewService service);
 
-    String addProvider(Services service);
+   // String addProvider(Services service);
 
     String addOverallDiscount(double percentage);
 

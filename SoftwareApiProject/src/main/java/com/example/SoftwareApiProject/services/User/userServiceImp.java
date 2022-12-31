@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
 import static com.example.SoftwareApiProject.Repository.adminRepository.*;
+import static com.example.SoftwareApiProject.Repository.userRepository.usersArray;
 
 @Service
 public class userServiceImp implements userService {
@@ -44,6 +45,12 @@ public class userServiceImp implements userService {
         return "user not found";
     }
 
+    @Override
+    public String signIn(String username, String password, String email) {
+        return userRepo.signIn(username, password, email);
+    }
+
+    @Override
 
     public String pay(String username, String serviceName, String PaymentMethod) {
         User user = userRepo.getUser(username);
@@ -62,18 +69,33 @@ public class userServiceImp implements userService {
         return userRepo.pay(service , user, PaymentMethod, amount);
     }
 
+
     @Override
-    public String addFunds(double amount) {
-        if(userRepo.loggedInUser!=null){
-            userRepo.loggedInUser.wallet.increment(amount);
-            userRepo.loggedInUser.creditCard.decrement(amount);
-            AddWalletTransactions t = new AddWalletTransactions(userRepo.loggedInUser.getUsername(),amount);
+    public String logOut(String name) {
+        return userRepo.logOut(name);
+    }
+
+    @Override
+    public String addFunds(double amount, String username) {
+        User user = userRepo.getUser(username);
+
+//        if (user.getisSignedIn()){
+//            loggedInUser = user;
+//        }
+
+        if(user != null){
+
+            user.wallet.increment(amount);
+            user.creditCard.decrement(amount);
+
+            AddWalletTransactions t = new AddWalletTransactions(user.getUsername(),amount);
             walletTransactions.add(t);
-            return "amount: "+amount+"has been added to your wallet and your wallet's new balance is "+userRepo.loggedInUser.wallet.getAmount();
+
+            return "amount: " + amount +" has been added to your wallet\nYour wallet's new balance is "+ user.wallet.getAmount();
         }
-        else{
-            return "please sign in first";
-        }
+
+        return "please sign in first";
+
     }
 
     public Payment checkPaymentType(String PaymentMethod, User user){
@@ -94,10 +116,7 @@ public class userServiceImp implements userService {
         return payMethod;
     }
 
-    @Override
-    public String signIn(User regesteredUser) {
-        return userRepo.signIn(regesteredUser);
-    }
+
 
     @Override
     public ArrayList<Services> search(String serviceName) {

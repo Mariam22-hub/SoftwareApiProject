@@ -25,12 +25,11 @@ public class adminServicesImp implements adminServices {
     @Autowired
     adminRepository adminRepo;
 
-    @Override
     public String addProvider(Services service) {
-        return adminRepo.addProvider(service);
+       return null;
     }
 
-    @Override
+
     public String addOverallDiscount(double percentage) {
         overallDiscount = new overall(percentage);
         overallDiscount.setFlag(true);

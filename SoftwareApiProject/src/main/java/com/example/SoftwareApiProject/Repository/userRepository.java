@@ -93,14 +93,22 @@ public class userRepository {
     }
 
 
-    public String signIn(User regesteredUser) {
+    public String signIn(String username, String password, String email) {
+
         for (User users : usersArray) {
-            if (users.getUsername().equals(regesteredUser.getUsername()) && users.getEmail().equals(regesteredUser.getEmail())&&users.getPassword().equals(regesteredUser.getPassword())) {
+
+            if (users.getUsername().toLowerCase().equals(username.toLowerCase()) && users.getEmail().toLowerCase().equals(email.toLowerCase())&&users.getPassword().toLowerCase().equals(password.toLowerCase())) {
                 users.setSignedIn(true);
-                loggedInUser = regesteredUser;
-                return "you signed in successfully";
+                loggedInUser = users;
+                return "You have signed";
             }
         }
         return ("Invalid User Information");
     }
+    public String logOut(String name) {
+        User user = getUser(name);
+        user.setSignedIn(false);
+        return "You have logged out\nPlease login to use our services";
+    }
+
 }
