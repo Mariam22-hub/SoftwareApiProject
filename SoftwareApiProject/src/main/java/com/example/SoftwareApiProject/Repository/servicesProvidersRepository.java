@@ -46,7 +46,7 @@ public class servicesProvidersRepository {
     public boolean subscribeUser(User user, String serviceName) {
         for (Services service : serviceProviders) {
             if (service.getName().toLowerCase().equals(serviceName.toLowerCase())) {
-                service.getArray().add(user);
+                service.addToArray(user);
                 return true;
             }
         }

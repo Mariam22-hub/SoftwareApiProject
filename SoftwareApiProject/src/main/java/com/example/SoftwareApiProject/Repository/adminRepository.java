@@ -48,20 +48,20 @@ public class adminRepository {
         }
         if(refundState == 1) {
             for (int i = 0; i < user.transactionPay.size(); i++) {
-                if (user.transactionPay.get(i).getService().getName().equals(refundTrans.getService().getName())) {
+                if (user.transactionPay.get(i).getService().equals(refundTrans.getService())) {
                     user.transactionPay.get(i).setRefunded(true);
                     user.transactionPay.get(i).setChecked(true);
                     user.transactionPay.get(i).setRefund(false);
                     allTransactions.remove(refundTrans);
                     user.refundTransactions.remove(refundTrans);
-                    user.getCreditCard().increment(user.transactionPay.get(i).getService().getPrice());
+                    user.getCreditCard().increment(user.transactionPay.get(i).getAmount());
                     return "user request accepted";
                 }
             }
         }
         else {
             for (int i = 0; i < user.transactionPay.size(); i++) {
-                if (user.transactionPay.get(i).getService().getName().equals(refundTrans.getService().getName())) {
+                if (user.transactionPay.get(i).getService().equals(refundTrans.getService())) {
                     user.transactionPay.get(i).setRefunded(false);
                     user.transactionPay.get(i).setChecked(true);
                     user.transactionPay.get(i).setRefund(false);

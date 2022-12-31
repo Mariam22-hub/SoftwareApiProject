@@ -54,6 +54,9 @@ public class InternetWE implements Services {
     public ArrayList<User> getArray() {
         return usersSubscribed;
     }
-
+    public void addToArray( User user)
+    {
+        usersSubscribed.add(user);
+    }
 
 }

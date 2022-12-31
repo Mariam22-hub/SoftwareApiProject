@@ -56,4 +56,8 @@ public class NewService implements Services{
     public void setPayment(Payment payMethod) {
         this.p = payMethod;
     }
+    public void addToArray( User user)
+    {
+        usersSubscribed.add(user);
+    }
 }

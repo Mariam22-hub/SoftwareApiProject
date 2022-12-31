@@ -17,4 +17,5 @@ public interface Services {
     public String description();
 
     void setPayment(Payment payMethod);
+    void addToArray(User user);
 }

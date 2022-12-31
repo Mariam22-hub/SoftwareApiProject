@@ -12,7 +12,7 @@ public class InternetEtisalat implements Services {
 
 	public static ArrayList<User> usersSubscribed = new ArrayList<User>();
 
-	public Payment payment;
+//	public Payment payment;
 	String name;
 	double price;
 	Payment p;
@@ -47,6 +47,10 @@ public class InternetEtisalat implements Services {
 	@Override
 	public ArrayList<User> getArray() {
 		return usersSubscribed;
+	}
+	public void addToArray( User user)
+	{
+		usersSubscribed.add(user);
 	}
 
 	@Override

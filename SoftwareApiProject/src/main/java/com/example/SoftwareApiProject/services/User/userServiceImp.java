@@ -124,14 +124,14 @@ public class userServiceImp implements userService {
 //            }
 //        }
         for(int i=0; i<user.transactionPay.size(); i++){
-            if(user.transactionPay.get(i).getService().getName().equals(service.getName())  && !(user.transactionPay.get(i).isRefund())){
+            if(user.transactionPay.get(i).getService().equals(service.getName())  && !(user.transactionPay.get(i).isRefund())){
                 user.transactionPay.get(i).setRefund(true);
                 user.transactionPay.get(i).setUser(user.getUsername());
                 Transactions tran = user.transactionPay.get(i);
                 tran.setId(allTransactions.size());
                 allTransactions.add(tran);
                 user.refundTransactions.add(tran);
-                return "refund process completed to "+user.transactionPay.get(i).getService().getName()+" service";
+                return "refund process completed to "+user.transactionPay.get(i).getService()+" service";
             }
         }
         return "you can not refund an uncompleted transaction";
@@ -142,13 +142,13 @@ public class userServiceImp implements userService {
         Services service = servicesimp.findSer(serviceName);
         for(int i=0; i<user.transactionPay.size(); i++) {
             if (!(user.transactionPay.get(i).isRefund()) && user.transactionPay.get(i).isRefunded() && user.transactionPay.get(i).isChecked()
-                    && service.getName().equals(user.transactionPay.get(i).getService().getName())) {
+                    && service.getName().equals(user.transactionPay.get(i).getService())) {
                 user.transactionPay.remove(user.transactionPay.get(i));
                 return "your request to "+service.getName()+" refund accepted successfully";
             }
 
             else if(!(user.transactionPay.get(i).isRefund()) && !(user.transactionPay.get(i).isRefunded()) && user.transactionPay.get(i).isChecked()
-                    && service.getName().equals(user.transactionPay.get(i).getService().getName()))
+                    && service.getName().equals(user.transactionPay.get(i).getService()))
 
                 return "your refund request rejected";
         }

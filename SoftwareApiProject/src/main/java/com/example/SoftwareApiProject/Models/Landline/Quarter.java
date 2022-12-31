@@ -61,6 +61,9 @@ public class Quarter implements Services {
 		this.p = p;
 	}
 
-
+	public void addToArray( User user)
+	{
+		usersSubscribed.add(user);
+	}
 
 }

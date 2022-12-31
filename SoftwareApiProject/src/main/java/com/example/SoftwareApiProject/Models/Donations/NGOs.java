@@ -40,6 +40,10 @@ public class NGOs implements Services {
 	public void setDiscountPercentage(double discountPercentage) {
 		DiscountPercentage = 100-discountPercentage;
 	}
+	public void addToArray( User user)
+	{
+		usersSubscribed.add(user);
+	}
 	@Override
 	public ArrayList<User> getArray() {
 		return usersSubscribed;

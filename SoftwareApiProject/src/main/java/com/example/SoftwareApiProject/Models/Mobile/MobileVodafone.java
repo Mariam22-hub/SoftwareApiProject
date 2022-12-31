@@ -52,5 +52,8 @@ public class MobileVodafone implements Services {
 		p = payMethod;
 	}
 
-
+	public void addToArray( User user)
+	{
+		usersSubscribed.add(user);
+	}
 }

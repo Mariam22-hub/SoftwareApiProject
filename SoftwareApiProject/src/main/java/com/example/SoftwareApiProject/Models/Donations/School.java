@@ -46,7 +46,10 @@ public class School implements Services {
 	}
 
 	public School(){}
-
+	public void addToArray( User user)
+	{
+		usersSubscribed.add(user);
+	}
 	public double pay() {
 		return p.pay(price);
 	}

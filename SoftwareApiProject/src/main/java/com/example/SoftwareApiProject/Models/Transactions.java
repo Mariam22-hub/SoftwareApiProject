@@ -1,9 +1,9 @@
 package com.example.SoftwareApiProject.Models;
 
 public class Transactions {
-    private Services service;
+    private String serviceName;
     private String user;
-    double amount;
+    private double amount;
     private long id = 0;
     //if user want to refund a transaction -> refund = true
     //if admin accept refund -> refunded = true
@@ -21,16 +21,16 @@ public class Transactions {
         this.checked = checked;
     }
 
-    public Transactions(Services service) {
-        this.service = service;
+    public Transactions(String service) {
+        this.serviceName = service;
     }
 
     public Transactions() {
 
     }
 
-    public Transactions(Services service, String user,double amount) {
-        this.service = service;
+    public Transactions(String service, String user,double amount) {
+        this.serviceName = service;
         this.user = user;
         this.amount = amount;
     }
@@ -54,12 +54,12 @@ public class Transactions {
         this.refund = refund;
     }
 
-    public Services getService() {
-        return service;
+    public String  getService() {
+        return serviceName;
     }
 
-    public void setService(Services service) {
-        this.service = service;
+    public void setService(String service) {
+        this.serviceName = service;
     }
 
     public String getUser() {
@@ -76,5 +76,12 @@ public class Transactions {
 
     public void setRefunded(boolean refunded) {
         this.refunded = refunded;
+    }
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }

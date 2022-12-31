@@ -29,7 +29,10 @@ public class CancerHospitals implements Services {
 	public double getPrice() {
 		return price;
 	}
-
+	public void addToArray( User user)
+	{
+		usersSubscribed.add(user);
+	}
 	public double DiscountPercentage = 100;
 	@Override
 	public double getDiscountPercentage() {

@@ -14,7 +14,7 @@ public class InternetOrange implements Services {
 
     public String name;
     public double price;
-    public Payment p;
+     Payment p;
     public double pay() {
         return p.pay(price);
     }
@@ -45,7 +45,10 @@ public class InternetOrange implements Services {
         return name;
     }
 
-
+    public void addToArray( User user)
+    {
+        usersSubscribed.add(user);
+    }
 
     @Override
     public double getPrice() {

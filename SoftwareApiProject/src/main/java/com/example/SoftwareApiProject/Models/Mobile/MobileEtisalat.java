@@ -51,5 +51,8 @@ public class MobileEtisalat implements Services {
 		p = payMethod;
 	}
 
-
+	public void addToArray( User user)
+	{
+		usersSubscribed.add(user);
+	}
 }

@@ -61,7 +61,10 @@ public class Monthly implements Services {
 	public void setPayment(Payment p) {
 		this.p = p;
 	}
-	
-	
+
+	public void addToArray( User user)
+	{
+		usersSubscribed.add(user);
+	}
 
 }

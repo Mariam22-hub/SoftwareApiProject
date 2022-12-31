@@ -55,6 +55,9 @@ public class MobileWE implements Services {
 	public void setPayment(Payment payMethod) {
 		p = payMethod;
 	}
-
+	public void addToArray( User user)
+	{
+		usersSubscribed.add(user);
+	}
 
 }
