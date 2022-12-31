@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
-import static com.example.SoftwareApiProject.Repository.adminRepository.overallDiscount;
+import static com.example.SoftwareApiProject.Repository.adminRepository.*;
 
 @Service
 public class userServiceImp implements userService {
@@ -62,6 +62,20 @@ public class userServiceImp implements userService {
         return userRepo.pay(service , user, PaymentMethod, amount);
     }
 
+    @Override
+    public String addFunds(double amount) {
+        if(userRepo.loggedInUser!=null){
+            userRepo.loggedInUser.wallet.increment(amount);
+            userRepo.loggedInUser.creditCard.decrement(amount);
+            AddWalletTransactions t = new AddWalletTransactions(userRepo.loggedInUser.getUsername(),amount);
+            walletTransactions.add(t);
+            return "amount: "+amount+"has been added to your wallet and your wallet's new balance is "+userRepo.loggedInUser.wallet.getAmount();
+        }
+        else{
+            return "please sign in first";
+        }
+    }
+
     public Payment checkPaymentType(String PaymentMethod, User user){
         Payment payMethod=null;
 
@@ -92,7 +106,23 @@ public class userServiceImp implements userService {
 
     public String doRefund(String userName, String serviceName){
         User user = userRepo.getUser(userName);
+
+        if (!user.getisSignedIn()){
+            return "please sign in first";
+        }
+
         Services service = servicesimp.findSer(serviceName);
+
+//        for(int i=0; i<user.transactionPay.size(); i++){
+//
+//            if(user.transactionPay.get(i).getService().getName().toLowerCase().equals(service.getName().toLowerCase())  && !(user.transactionPay.get(i).isRefund())){
+//                user.transactionPay.get(i).setRefund(true);
+//                user.transactionPay.get(i).setUser(user.getUsername());
+//
+//                allTransactions.add(user.transactionPay.get(i));
+//                return "refund request is completed";
+//            }
+//        }
         for(int i=0; i<user.transactionPay.size(); i++){
             if(user.transactionPay.get(i).getService().getName().equals(service.getName())  && !(user.transactionPay.get(i).isRefund())){
                 user.transactionPay.get(i).setRefund(true);
@@ -100,17 +130,17 @@ public class userServiceImp implements userService {
                 Transactions tran = user.transactionPay.get(i);
                 tran.setId(allTransactions.size());
                 allTransactions.add(tran);
-                return "refund process completed";
+                user.refundTransactions.add(tran);
+                return "refund process completed to "+user.transactionPay.get(i).getService().getName()+" service";
             }
         }
-        return "you can not refund a not completed transaction";
+        return "you can not refund an uncompleted transaction";
     }
     //if user want to check if his refund request is accepted or not
     public String checkRefund(String userName, String serviceName){
         User user = userRepo.getUser(userName);
         Services service = servicesimp.findSer(serviceName);
         for(int i=0; i<user.transactionPay.size(); i++) {
-
             if (!(user.transactionPay.get(i).isRefund()) && user.transactionPay.get(i).isRefunded() && user.transactionPay.get(i).isChecked()
                     && service.getName().equals(user.transactionPay.get(i).getService().getName())) {
                 user.transactionPay.remove(user.transactionPay.get(i));
@@ -121,12 +151,7 @@ public class userServiceImp implements userService {
                     && service.getName().equals(user.transactionPay.get(i).getService().getName()))
 
                 return "your refund request rejected";
-
-
-            else if(user.transactionPay.get(i).isRefund() && !(user.transactionPay.get(i).isChecked())
-                    && service.getName().equals(user.transactionPay.get(i).getService().getName()))
-                return "you haven't got response yet";
         }
-        return "bad request";
+        return "you haven't got response yet";
     }
 }

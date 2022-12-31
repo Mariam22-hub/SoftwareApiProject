@@ -13,6 +13,8 @@ public interface userService {
 
     String subscribe(String username, String serviceName);
 
+    //String PayByWallet(String username, String serviceName, String paymentMethod);
+
     String signIn(User user);
 
     String doRefund(String username, String serviceName);
@@ -23,6 +25,6 @@ public interface userService {
 
     String pay(String username, String serviceName, String paymentMethod);
 
-//    String addFunds(double amount);
+    String addFunds(double amount);
 }
 

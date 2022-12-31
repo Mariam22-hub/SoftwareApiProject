@@ -1,6 +1,6 @@
-
 package com.example.SoftwareApiProject.services.Admin;
 
+import com.example.SoftwareApiProject.Models.AddWalletTransactions;
 import com.example.SoftwareApiProject.Models.Discounts.overall;
 import com.example.SoftwareApiProject.Models.Transactions;
 import com.example.SoftwareApiProject.Models.Discounts.specific;
@@ -38,7 +38,9 @@ public class adminServicesImp implements adminServices{
     public ArrayList<Transactions> listAllRefundReq() {
         return adminRepo.findAllRefund();
     }
-
+    public ArrayList<Transactions> userPayTrans(String userName) {
+        return adminRepo.userPayTrans(userName);
+    }
     @Override
     public String updateRefund(int transId, int refundState) {
         return adminRepo.updateUserRefund( transId, refundState);
@@ -53,10 +55,10 @@ public class adminServicesImp implements adminServices{
     }
 
 
-    public ArrayList<Transactions> userPayTrans(String userName) {
-        return adminRepo.userPayTrans(userName);
+    public ArrayList<AddWalletTransactions> userWalletTrans(String userName) {
+        return adminRepo.userWalletTrans(userName);
+    }
+    public ArrayList<Transactions> listUserRefundReq(String userName) {
+        return adminRepo.listUserRefundReq(userName);
     }
 }
-
-
-

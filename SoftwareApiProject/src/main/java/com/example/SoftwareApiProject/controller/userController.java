@@ -28,7 +28,6 @@ public class userController {
 
     @GetMapping("/users/{username}")
     public User getUser(@PathVariable ("username") String name){
-        System.out.println("-- Your account information --");
         return service.getUser(name);
     }
 
@@ -55,10 +54,11 @@ public class userController {
     {
         return ResponseEntity.ok(service.checkRefund(username,serviceName));
     }
-//    @PutMapping("/users/addFunds")
-//    public ResponseEntity<String> addFunds(@RequestParam(value = "amount") double amount)
-//    {
-//        return ResponseEntity.ok(service.addFunds(amount));
-//    }
+    @PutMapping("/users/addFunds")
+    public ResponseEntity<String> addFunds(@RequestParam(value = "amount") double amount)
+    {
+
+        return ResponseEntity.ok(service.addFunds(amount));
+    }
 
 }

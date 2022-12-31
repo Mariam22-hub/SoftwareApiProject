@@ -10,11 +10,12 @@ public class User{
     String password;
     String refundState;
     String email;
-   public Wallet wallet;
-   public ArrayList<Transactions> transactionPay = new ArrayList<>();
-
+    public Wallet wallet;
+    public ArrayList<Transactions> transactionPay = new ArrayList<>();
+    public ArrayList<Transactions> refundTransactions = new ArrayList<>();
 
     public CreditCard creditCard;
+    String serviceType = "";
     boolean signedIn = false;
 
     public boolean getisSignedIn() {

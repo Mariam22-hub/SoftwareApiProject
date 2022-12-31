@@ -1,4 +1,3 @@
-
 package com.example.SoftwareApiProject.Models;
 
 
@@ -44,13 +43,12 @@ public class CreditCard{
         amount -= am;
         //transactions.add(am);
     }
-
-    public void increment(double price) {
-        amount+=price;
-    }
-//    public void increment(double amount){
+    //    public void increment(double amount){
 //        double newAmount = getAmount()+amount;
 //        setAmount(newAmount);
 //    }
+    public void increment(double price) {
+        amount+=price;
+    }
 
 }
