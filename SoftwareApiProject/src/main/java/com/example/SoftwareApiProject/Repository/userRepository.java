@@ -95,4 +95,23 @@ public class userRepository {
         return "You have logged out\nPlease login to use our services";
     }
 
+    public String doRefund(User user, Services service) {
+
+        for(int i=0; i<user.transactionPay.size(); i++){
+
+            if(user.transactionPay.get(i).getService().equals(service.getName())  && !(user.transactionPay.get(i).isRefund())){
+                user.transactionPay.get(i).setRefund(true);
+                user.transactionPay.get(i).setUser(user.getUsername());
+
+                Transactions tran = user.transactionPay.get(i);
+                tran.setId(allTransactions.size());
+
+                allTransactions.add(tran);
+                user.refundTransactions.add(tran);
+
+                return "refund process completed to "+user.transactionPay.get(i).getService()+" service";
+            }
+        }
+        return "you can not refund an uncompleted transaction";
+    }
 }

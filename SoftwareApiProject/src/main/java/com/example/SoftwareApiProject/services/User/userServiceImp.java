@@ -1,11 +1,13 @@
 package com.example.SoftwareApiProject.services.User;
 
 
-import com.example.SoftwareApiProject.Models.*;
+import com.example.SoftwareApiProject.Models.AddWalletTransactions;
 import com.example.SoftwareApiProject.Models.Payment.PayByCard;
 import com.example.SoftwareApiProject.Models.Payment.PayByCash;
 import com.example.SoftwareApiProject.Models.Payment.PayByWallet;
 import com.example.SoftwareApiProject.Models.Payment.Payment;
+import com.example.SoftwareApiProject.Models.Services;
+import com.example.SoftwareApiProject.Models.User;
 import com.example.SoftwareApiProject.Repository.userRepository;
 import com.example.SoftwareApiProject.services.serviceProviders.servicesProvidersImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
 import static com.example.SoftwareApiProject.Repository.adminRepository.*;
 
 @Service
@@ -131,19 +132,8 @@ public class userServiceImp implements userService {
         }
 
         Services service = servicesimp.findSer(serviceName);
+        return userRepo.doRefund(user, service);
 
-        for(int i=0; i<user.transactionPay.size(); i++){
-            if(user.transactionPay.get(i).getService().equals(service.getName())  && !(user.transactionPay.get(i).isRefund())){
-                user.transactionPay.get(i).setRefund(true);
-                user.transactionPay.get(i).setUser(user.getUsername());
-                Transactions tran = user.transactionPay.get(i);
-                tran.setId(allTransactions.size());
-                allTransactions.add(tran);
-                user.refundTransactions.add(tran);
-                return "refund process completed to "+user.transactionPay.get(i).getService()+" service";
-            }
-        }
-        return "you can not refund an uncompleted transaction";
     }
     //if user want to check if his refund request is accepted or not
     public String checkRefund(String userName, String serviceName){
