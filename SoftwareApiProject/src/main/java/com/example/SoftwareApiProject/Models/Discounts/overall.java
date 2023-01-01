@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@NoArgsConstructor
 //@AllArgsConstructor
 public class overall extends Discounts {
 
@@ -21,6 +20,10 @@ public class overall extends Discounts {
 		DiscountAmount = discountAmount;
 		this.p = p;
 		this.flag = flag;
+	}
+	
+	public overall() {
+		
 	}
 
 
