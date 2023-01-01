@@ -49,7 +49,7 @@ public class userRepository {
 
     public String pay(Services service, User user , String PaymentMethod, double amount) {
 
-        if(PaymentMethod.toLowerCase().equals("wallet")){
+        if(PaymentMethod.equalsIgnoreCase("wallet")){
             user.wallet.decrement(amount);
             //store transaction
             Transactions t = new Transactions(service.getName(),user.getUsername(),amount);
@@ -57,7 +57,7 @@ public class userRepository {
            user.transactionPay.add(t);
             return "Payment by wallet is successful\nyour  amount is " + user.wallet.getAmount();
         }
-        if (PaymentMethod.toLowerCase().equals("creditcard")) {
+        if (PaymentMethod.equalsIgnoreCase("creditcard")) {
             user.getCreditCard().decrement(amount);
             Transactions t = new Transactions(service.getName(),user.getUsername(),amount);
            user.transactionPay.add(t);
@@ -65,7 +65,7 @@ public class userRepository {
 
             return "Payment by creditCard is successful\nyour amount is " + user.getCreditCard().getAmount();
         }
-        if (PaymentMethod.toLowerCase().equals("cash")) {
+        if (PaymentMethod.equalsIgnoreCase("cash")) {
             Transactions t = new Transactions(service.getName(),user.getUsername(),amount);
             user.transactionPay.add(t);
             transactionPays.add(t);

@@ -100,21 +100,21 @@ public class userServiceImp implements userService {
     }
 
     public Payment checkPaymentType(String PaymentMethod, User user){
-        Payment payMethod=null;
+        Payment paymethod = null;
 
-        if(PaymentMethod.equals("Wallet")){
-            payMethod = new PayByWallet(user.getWallet());
+        if(PaymentMethod.equalsIgnoreCase(("Wallet"))){
+            paymethod = new PayByWallet(user.getWallet());
         }
-        if(PaymentMethod.equals("CreditCard"))
+        if(PaymentMethod.equalsIgnoreCase("creditcard"))
         {
-            payMethod = new PayByCard(user.getCreditCard());
+            paymethod = new PayByCard(user.getCreditCard());
         }
-        if(PaymentMethod.equals("Cash"))
+        if(PaymentMethod.equalsIgnoreCase("Cash"))
         {
-            payMethod = new PayByCash(user.getUsername());
+            paymethod = new PayByCash(user.getUsername());
         }
 
-        return payMethod;
+        return paymethod;
     }
 
 
@@ -139,7 +139,9 @@ public class userServiceImp implements userService {
     public String checkRefund(String userName, String serviceName){
         User user = userRepo.getUser(userName);
         Services service = servicesimp.findSer(serviceName);
+
         for(int i=0; i<user.transactionPay.size(); i++) {
+
             if (!(user.transactionPay.get(i).isRefund()) && user.transactionPay.get(i).isRefunded() && user.transactionPay.get(i).isChecked()
                     && service.getName().equals(user.transactionPay.get(i).getService())) {
                 user.transactionPay.remove(user.transactionPay.get(i));
