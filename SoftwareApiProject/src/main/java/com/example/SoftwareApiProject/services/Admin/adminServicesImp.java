@@ -26,7 +26,7 @@ public class adminServicesImp implements adminServices {
     adminRepository adminRepo;
 
     public String addProvider(Services service) {
-       return null;
+       return adminRepo.addProvider(service);
     }
 
 

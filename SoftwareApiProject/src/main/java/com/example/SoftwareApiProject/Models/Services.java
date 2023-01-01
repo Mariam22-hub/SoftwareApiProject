@@ -1,5 +1,7 @@
 package com.example.SoftwareApiProject.Models;
 
+import com.example.SoftwareApiProject.Models.Payment.Payment;
+
 import java.util.ArrayList;
 
 public interface Services {

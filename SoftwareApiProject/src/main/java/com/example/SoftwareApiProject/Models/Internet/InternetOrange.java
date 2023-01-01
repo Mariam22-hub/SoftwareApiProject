@@ -1,6 +1,6 @@
 package com.example.SoftwareApiProject.Models.Internet;//package com.example.SoftwareAPIProject.entity.Internet;
 
-import com.example.SoftwareApiProject.Models.Payment;
+import com.example.SoftwareApiProject.Models.Payment.Payment;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import org.springframework.stereotype.Component;

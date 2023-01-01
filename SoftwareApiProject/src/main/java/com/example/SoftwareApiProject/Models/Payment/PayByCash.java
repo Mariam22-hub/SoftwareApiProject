@@ -1,4 +1,4 @@
-package com.example.SoftwareApiProject.Models;
+package com.example.SoftwareApiProject.Models.Payment;
 
 public class PayByCash implements Payment{
 

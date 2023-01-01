@@ -1,8 +1,7 @@
 
 package com.example.SoftwareApiProject.Models.Mobile;
 
-import com.example.SoftwareApiProject.Models.Discounts.Discounts;
-import com.example.SoftwareApiProject.Models.Payment;
+import com.example.SoftwareApiProject.Models.Payment.Payment;
 import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.User;
 import org.springframework.stereotype.Component;

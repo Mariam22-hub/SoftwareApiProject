@@ -1,4 +1,7 @@
-package com.example.SoftwareApiProject.Models;
+package com.example.SoftwareApiProject.Models.Payment;
+
+import com.example.SoftwareApiProject.Models.CreditCard;
+
 public class PayByCard implements Payment{
 
     String cardNum;

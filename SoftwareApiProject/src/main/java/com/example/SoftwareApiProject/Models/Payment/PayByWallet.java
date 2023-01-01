@@ -1,4 +1,6 @@
-package com.example.SoftwareApiProject.Models;
+package com.example.SoftwareApiProject.Models.Payment;
+
+import com.example.SoftwareApiProject.Models.Wallet;
 
 public class PayByWallet implements Payment {
     Wallet wallet;

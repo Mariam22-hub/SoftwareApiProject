@@ -91,20 +91,5 @@ public class User{
 
 
 
-//    public double checkType(String payMethod, double pay){
-//        if (payMethod.equals("CreditCard")){
-//            return creditCard.amount;
-//        }
-//        else if (payMethod.equals("Wallet")){
-//            return wallet.amount;
-//        }
-//        else {
-//                return pay;
-//        }
-//    }
-
-
-
-
 }
 

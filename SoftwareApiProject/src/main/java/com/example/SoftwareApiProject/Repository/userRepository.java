@@ -48,22 +48,6 @@ public class userRepository {
     }
 
     public String pay(Services service, User user , String PaymentMethod, double amount) {
-//        Payment payMethod=null;
-//
-//        if(PaymentMethod.equals("Wallet")){
-//        payMethod = new PayByWallet(user.getWallet());
-//        }
-//        if(PaymentMethod.equals("CreditCard"))
-//        {
-//        payMethod = new PayByCard(user.getCreditCard());
-//        }
-//        if(PaymentMethod.equals("Cash"))
-//        {
-//          payMethod = new PayByCash(user.getUsername());
-//
-//        }
-//        service.setPayment(payMethod);
-//        service.pay();
 
         if(PaymentMethod.equals("Wallet")){
             user.wallet.decrement(amount);

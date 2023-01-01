@@ -2,9 +2,11 @@ package com.example.SoftwareApiProject.Repository;
 
 import com.example.SoftwareApiProject.Models.AddWalletTransactions;
 import com.example.SoftwareApiProject.Models.Discounts.overall;
+import com.example.SoftwareApiProject.Models.Services;
 import com.example.SoftwareApiProject.Models.Transactions;
 import com.example.SoftwareApiProject.Models.User;
 import com.example.SoftwareApiProject.Models.Discounts.specific;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,10 +18,11 @@ import static com.example.SoftwareApiProject.Repository.userRepository.usersArra
 
 @Service
 public class adminRepository {
-    ArrayList<Objects> history = new ArrayList<>();
     public static ArrayList<Transactions> transactionPays = new ArrayList<>();
     public static ArrayList<AddWalletTransactions> walletTransactions = new ArrayList<>();
     public static overall overallDiscount = new overall();
+    @Autowired
+    public servicesProvidersRepository servicesRepo;
 
     public ArrayList<Transactions> findAllRefund() {
         if(allTransactions.size() > 0){
@@ -48,6 +51,7 @@ public class adminRepository {
         }
         if(refundState == 1) {
             for (int i = 0; i < user.transactionPay.size(); i++) {
+
                 if (user.transactionPay.get(i).getService().equals(refundTrans.getService())) {
                     user.transactionPay.get(i).setRefunded(true);
                     user.transactionPay.get(i).setChecked(true);
@@ -117,5 +121,10 @@ public class adminRepository {
         }
         return user.refundTransactions;
 
+    }
+
+    public String addProvider(Services service){
+        servicesRepo.insert(service);
+        return "service " + service.getName() + " has been added to the list of service providers";
     }
 }

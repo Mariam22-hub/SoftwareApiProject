@@ -2,7 +2,10 @@ package com.example.SoftwareApiProject.services.User;
 
 
 import com.example.SoftwareApiProject.Models.*;
-import com.example.SoftwareApiProject.Models.Discounts.specific;
+import com.example.SoftwareApiProject.Models.Payment.PayByCard;
+import com.example.SoftwareApiProject.Models.Payment.PayByCash;
+import com.example.SoftwareApiProject.Models.Payment.PayByWallet;
+import com.example.SoftwareApiProject.Models.Payment.Payment;
 import com.example.SoftwareApiProject.Repository.userRepository;
 import com.example.SoftwareApiProject.services.serviceProviders.servicesProvidersImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +15,6 @@ import java.util.ArrayList;
 
 import static com.example.SoftwareApiProject.Models.Admin.allTransactions;
 import static com.example.SoftwareApiProject.Repository.adminRepository.*;
-import static com.example.SoftwareApiProject.Repository.userRepository.usersArray;
 
 @Service
 public class userServiceImp implements userService {
@@ -34,6 +36,7 @@ public class userServiceImp implements userService {
     @Override
     public String subscribe(String username, String serviceName) {
         User user = userRepo.subscribe(username);
+
         if (user != null) {
             boolean flag = servicesimp.subscribeUser(serviceName, user);
             if (flag) {
@@ -59,6 +62,7 @@ public class userServiceImp implements userService {
 
         Payment payMethod = checkPaymentType(PaymentMethod, user);
         service.setPayment(payMethod);
+
         if (overallDiscount.isFlag()){
             amount = overallDiscount.pay(service);
             amount = specific.pay(service,amount);
@@ -78,10 +82,6 @@ public class userServiceImp implements userService {
     @Override
     public String addFunds(double amount, String username) {
         User user = userRepo.getUser(username);
-
-//        if (user.getisSignedIn()){
-//            loggedInUser = user;
-//        }
 
         if(user != null){
 
@@ -132,16 +132,6 @@ public class userServiceImp implements userService {
 
         Services service = servicesimp.findSer(serviceName);
 
-//        for(int i=0; i<user.transactionPay.size(); i++){
-//
-//            if(user.transactionPay.get(i).getService().getName().toLowerCase().equals(service.getName().toLowerCase())  && !(user.transactionPay.get(i).isRefund())){
-//                user.transactionPay.get(i).setRefund(true);
-//                user.transactionPay.get(i).setUser(user.getUsername());
-//
-//                allTransactions.add(user.transactionPay.get(i));
-//                return "refund request is completed";
-//            }
-//        }
         for(int i=0; i<user.transactionPay.size(); i++){
             if(user.transactionPay.get(i).getService().equals(service.getName())  && !(user.transactionPay.get(i).isRefund())){
                 user.transactionPay.get(i).setRefund(true);
